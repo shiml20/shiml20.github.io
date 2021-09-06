@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Python Crawlers Foundation Modules BS4 The full name of BS4 is Beautiful Soup. It provides easy and python type methods to process navigation, search, change parse tree and so on. It is a tool box.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python Crawlers Foundation">
+<meta property="og:url" content="http://example.com/2021/09/07/Crawlers/index.html">
+<meta property="og:site_name" content="Silence">
+<meta property="og:description" content="Python Crawlers Foundation Modules BS4 The full name of BS4 is Beautiful Soup. It provides easy and python type methods to process navigation, search, change parse tree and so on. It is a tool box.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-06T16:05:00.000Z">
+<meta property="article:modified_time" content="2021-09-06T16:10:49.848Z">
+<meta property="article:author" content="Stephen Serrylei">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/09/07/Crawlers/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Python Crawlers Foundation | Silence</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Silence</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">THU TIME</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/07/Crawlers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stephen Serrylei">
+      <meta itemprop="description" content="Just record something randomly">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Silence">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python Crawlers Foundation
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-09-07 00:05:00 / Modified: 00:10:49" itemprop="dateCreated datePublished" datetime="2021-09-07T00:05:00+08:00">2021-09-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="python-crawlers-foundation">Python Crawlers Foundation</h3>
+<h4 id="modules">Modules</h4>
+<h5 id="bs4">BS4</h5>
+<p>The full name of BS4 is Beautiful Soup. It provides easy and python type methods to process navigation, search, change parse tree and so on. It is a tool box. It can parse documents and change the input document into <code>Unicode</code> coding automatically, the output document into <code>utf-8</code> encoding.</p>
+<p>In other word Beautiful Soup is a library that get data from HTMLfiles.</p>
+<span id="more"></span>
+<h6 id="object-in-bs4">object in BS4</h6>
+<ol type="1">
+<li><code>Tag</code></li>
+<li><code>BeautifulSoup</code></li>
+<li><code>NavigableString</code></li>
+<li><code>Comment</code></li>
+<li><code>element.ResultSet</code> you can take it as a dictionary that is covered by list. Each element in it is a tag.</li>
+</ol>
+<h6 id="methods">methods</h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">soup = BeautifulSoup(html_doc,<span class="string">&#x27;html.parser&#x27;</span>) <span class="comment"># use interpreter in python standard library</span></span><br><span class="line"></span><br><span class="line">soup.title</span><br><span class="line">soup.title.name</span><br><span class="line">soup.title.string</span><br><span class="line">soup.title.text</span><br><span class="line">soup.title.parent.name</span><br><span class="line">soup.p</span><br><span class="line">soup.a <span class="comment"># get content from tag</span></span><br><span class="line">soup.a.attrs <span class="comment"># return a dictionary</span></span><br><span class="line"><span class="comment"># we can only get the frist tag content from operations above</span></span><br><span class="line">soup.a.get(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">soup.a.get(<span class="string">&#x27;class&#x27;</span>)</span><br><span class="line">soup.a.string <span class="comment"># attention: only when there is no subtag or one subtag can we use string order</span></span><br><span class="line">soup.a.get_text() <span class="comment"># we can get all the content including children of the node, it&#x27;s the most usually used one.</span></span><br><span class="line">soup.img.get(<span class="string">&#x27;src&#x27;</span>)</span><br><span class="line"><span class="comment">## use tag to get content above.</span></span><br><span class="line"></span><br><span class="line">soup.find(<span class="string">&#x27;a&#x27;</span>) <span class="comment"># find tag a</span></span><br><span class="line">soup.find_all(<span class="string">&#x27;a&#x27;</span>) <span class="comment"># find all the tag a in soup, and create a list?</span></span><br><span class="line">soup.find_all(<span class="string">&#x27;a&#x27;</span>,class_<span class="string">&#x27;img&#x27;</span>)<span class="comment"># get all the a tag and the name of class is sister. </span></span><br><span class="line">dataclear1 = soup.find_all(<span class="string">&#x27;img&#x27;</span>) <span class="comment"># return an object &#x27;bs4.element.ResultSet&#x27;</span></span><br><span class="line"><span class="comment">## the parameters must be a tag</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> link <span class="keyword">in</span> soup.find_all(<span class="string">&#x27;a&#x27;</span>):</span><br><span class="line">    <span class="built_in">print</span>(link.get(<span class="string">&#x27;href&#x27;</span>)) <span class="comment"># print all the link in tag a</span></span><br></pre></td></tr></table></figure>
+<h5 id="requests">Requests</h5>
+<p>Based on <code>urllib</code> in Python, using HTTP library of <code>Apache2 Licensed</code> open source protocol.</p>
+<h6 id="methods-1">methods</h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r = requests.get(<span class="string">&#x27;url&#x27;</span>) <span class="comment"># response object</span></span><br><span class="line">headers=&#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36&#x27;</span></span><br><span class="line">&#125; <span class="comment"># create a headers dictionary</span></span><br><span class="line">r1 = requests.get(<span class="string">&#x27;url&#x27;</span>, headers = headers)</span><br><span class="line">r2 = requests.get(<span class="string">&#x27;url&#x27;</span>, timeout = <span class="number">10</span>) <span class="comment"># set timeout</span></span><br></pre></td></tr></table></figure>
+<h6 id="response-object">response object</h6>
+<table>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 74%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>r.status_code</code></td>
+<td>conditions of HTTP request, 200 means connect successfully, 404 means failure</td>
+</tr>
+<tr class="even">
+<td><code>r.text</code></td>
+<td>String type of HTTP response content, also the content of original page</td>
+</tr>
+<tr class="odd">
+<td><code>r.encoding</code></td>
+<td>encoding type guessing from HTTP header</td>
+</tr>
+<tr class="even">
+<td><code>r.apparent_encoding</code></td>
+<td>encoding from content analysis</td>
+</tr>
+<tr class="odd">
+<td><code>r.content</code></td>
+<td>binary form of HTTP response content</td>
+</tr>
+</tbody>
+</table>
+<h4 id="file-operation">File operation</h4>
+<h5 id="os-module">Os module</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.mkdir(folder_path) <span class="comment"># create a folder</span></span><br></pre></td></tr></table></figure>
+<h5 id="python-standard-module">Python Standard module</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">folder_path = <span class="string">&#x27;E:\\CS\Python\Cartoon\s&#x27;</span></span><br><span class="line">fp = <span class="built_in">open</span>(folder_path + <span class="string">&#x27;picture%s.jpg&#x27;</span> %i ,<span class="string">&quot;wb&quot;</span>) <span class="comment"># write in binary format</span></span><br><span class="line">fp = write(r.content) <span class="comment"># write the binary format of response object</span></span><br><span class="line">fp.close() <span class="comment"># a file written must be close in time</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="full-codes-9.5">Full Codes (9.5)</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://wmtp.net/touxiang/dongmantoux&#x27;</span></span><br><span class="line">content = requests.get(url,).content</span><br><span class="line">soup = BeautifulSoup(content, <span class="string">&#x27;html.parser&#x27;</span>, from_encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">data = soup.find(<span class="built_in">id</span>=<span class="string">&#x27;mainbox&#x27;</span>).find_all(<span class="string">&#x27;li&#x27;</span>, class_=<span class="string">&#x27;item_box&#x27;</span>)</span><br><span class="line">dataclear = soup.find_all(<span class="string">&#x27;img&#x27;</span>)</span><br><span class="line">dataclear1 = soup.find_all(<span class="string">&#x27;src&#x27;</span>)</span><br><span class="line">folder_path = <span class="string">&#x27;E:\\CS\Python\Cartoon\d&#x27;</span></span><br><span class="line">path = <span class="string">&#x27;E:\\&#x27;</span> <span class="comment"># 想要创建文件夹的地址  我用的是绝对地址</span></span><br><span class="line"><span class="comment">#os.mkdir(folder_path) # 用 os库来完成创建</span></span><br><span class="line">src = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> dataclear:</span><br><span class="line">    src.append(item.get(<span class="string">&#x27;src&#x27;</span>))</span><br><span class="line">    </span><br><span class="line">i = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> items <span class="keyword">in</span> src:</span><br><span class="line">    pic = requests.get(items, timeout=<span class="number">7</span>)</span><br><span class="line">    fp = <span class="built_in">open</span>(folder_path + <span class="string">&#x27;picture%s.jpg&#x27;</span> % i, <span class="string">&quot;wb+&quot;</span>)</span><br><span class="line">    fp.write(pic.content)</span><br><span class="line">    fp.close()</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Successfully!&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/29/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" rel="prev" title="Hexo搭建Blog 图片问题与Latex语法渲染问题">
+      <i class="fa fa-chevron-left"></i> Hexo搭建Blog 图片问题与Latex语法渲染问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/07/ANN-concept/" rel="next" title="ANN Foundation">
+      ANN Foundation <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#python-crawlers-foundation"><span class="nav-number">1.</span> <span class="nav-text">Python Crawlers Foundation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#modules"><span class="nav-number">1.1.</span> <span class="nav-text">Modules</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#bs4"><span class="nav-number">1.1.1.</span> <span class="nav-text">BS4</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#object-in-bs4"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">object in BS4</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#methods"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">methods</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#requests"><span class="nav-number">1.1.2.</span> <span class="nav-text">Requests</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#methods-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">methods</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#response-object"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">response object</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#file-operation"><span class="nav-number">1.2.</span> <span class="nav-text">File operation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#os-module"><span class="nav-number">1.2.1.</span> <span class="nav-text">Os module</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#python-standard-module"><span class="nav-number">1.2.2.</span> <span class="nav-text">Python Standard module</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#full-codes-9.5"><span class="nav-number">1.2.3.</span> <span class="nav-text">Full Codes (9.5)</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Stephen Serrylei</p>
+  <div class="site-description" itemprop="description">Just record something randomly</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stephen Serrylei</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
