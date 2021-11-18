@@ -20,20 +20,23 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="神经网络 基本要素 人工神经网络（ANNs）也简称神经网络（NNs）或称作连接模型（Connectionist Model）,它是一种模仿动物神经网络行为特征，进行&#x3D;&#x3D;分布式并行信息处理&#x3D;&#x3D;的算法数学模型。这种网络依靠系统的复杂程度，通过调整内部大量节点之间相互连接的关系，从而达到处理信息的目的。">
+  <meta name="description" content="通过这半个月来的调试过程，我可以总结很多编程经验，在这里我先用两份OJ递交图来警醒自己这段时间里费的有用功与无用功。  image-20211119005034219   image-20211119004933557  这阶段我能总结出来的经验包括以下三个部分，每个部分中又有一些小的感想（一）OJ的运行与判定过程。（二）软件工程的一些想法。（三）编程心理。 （一）OJ的运行与判定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ANN Foundation">
-<meta property="og:url" content="http://example.com/2021/09/07/ANN-concept/index.html">
+<meta property="og:title" content="生活随记">
+<meta property="og:url" content="http://example.com/2021/11/19/20211119/index.html">
 <meta property="og:site_name" content="Silence">
-<meta property="og:description" content="神经网络 基本要素 人工神经网络（ANNs）也简称神经网络（NNs）或称作连接模型（Connectionist Model）,它是一种模仿动物神经网络行为特征，进行&#x3D;&#x3D;分布式并行信息处理&#x3D;&#x3D;的算法数学模型。这种网络依靠系统的复杂程度，通过调整内部大量节点之间相互连接的关系，从而达到处理信息的目的。">
+<meta property="og:description" content="通过这半个月来的调试过程，我可以总结很多编程经验，在这里我先用两份OJ递交图来警醒自己这段时间里费的有用功与无用功。  image-20211119005034219   image-20211119004933557  这阶段我能总结出来的经验包括以下三个部分，每个部分中又有一些小的感想（一）OJ的运行与判定过程。（二）软件工程的一些想法。（三）编程心理。 （一）OJ的运行与判定">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-09-06T16:06:00.000Z">
-<meta property="article:modified_time" content="2021-09-08T13:04:14.227Z">
+<meta property="og:image" content="http://example.com/2021/11/19/20211119/image-20211119005034219.png">
+<meta property="og:image" content="http://example.com/2021/11/19/20211119/image-20211119004933557.png">
+<meta property="article:published_time" content="2021-11-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-11-18T17:05:15.139Z">
 <meta property="article:author" content="Stephen Serrylei">
-<meta property="article:tag" content="ANN">
+<meta property="article:tag" content="thoughts">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/11/19/20211119/image-20211119005034219.png">
 
-<link rel="canonical" href="http://example.com/2021/09/07/ANN-concept/">
+<link rel="canonical" href="http://example.com/2021/11/19/20211119/">
 
 
 <script id="page-configurations">
@@ -46,7 +49,7 @@
   };
 </script>
 
-  <title>ANN Foundation | Silence</title>
+  <title>生活随记 | Silence</title>
   
 
 
@@ -156,7 +159,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/07/ANN-concept/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/19/20211119/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,7 +172,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ANN Foundation
+          生活随记
         </h1>
 
         <div class="post-meta">
@@ -178,23 +181,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-09-07 00:06:00" itemprop="dateCreated datePublished" datetime="2021-09-07T00:06:00+08:00">2021-09-07</time>
+              <time title="Created: 2021-11-19 00:00:00 / Modified: 01:05:15" itemprop="dateCreated datePublished" datetime="2021-11-19T00:00:00+08:00">2021-11-19</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-08 21:04:14" itemprop="dateModified" datetime="2021-09-08T21:04:14+08:00">2021-09-08</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ANN/" itemprop="url" rel="index"><span itemprop="name">ANN</span></a>
+                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
                 </span>
             </span>
 
@@ -209,88 +206,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="神经网络">神经网络</h2>
-<h5 id="基本要素">基本要素</h5>
-<p>人工神经网络（ANNs）也简称神经网络（NNs）或称作连接模型（Connectionist Model）,它是一种模仿动物神经网络行为特征，进行==<strong>分布式并行信息处理</strong>==的算法数学模型。这种网络依靠系统的复杂程度，通过调整内部大量节点之间相互连接的关系，从而达到处理信息的目的。</p>
-<span id="more"></span>
-<h6 id="特点">特点</h6>
+        <p>通过这半个月来的调试过程，我可以总结很多编程经验，在这里我先用两份OJ递交图来警醒自己这段时间里费的有用功与无用功。</p>
+<figure>
+<img src="/2021/11/19/20211119/image-20211119005034219.png" alt="image-20211119005034219"><figcaption aria-hidden="true">image-20211119005034219</figcaption>
+</figure>
+<figure>
+<img src="/2021/11/19/20211119/image-20211119004933557.png" alt="image-20211119004933557"><figcaption aria-hidden="true">image-20211119004933557</figcaption>
+</figure>
+<p>这阶段我能总结出来的经验包括以下三个部分，每个部分中又有一些小的感想（一）OJ的运行与判定过程。（二）软件工程的一些想法。（三）编程心理。</p>
+<h6 id="一oj的运行与判定过程">（一）OJ的运行与判定过程。</h6>
+<p>OJ判定目前我发现了五种</p>
 <ol type="1">
-<li><p>非线性</p>
-<p>人工神经元处于激活或抑制两种状态，数学上这种行为是非线性的。<strong>具有阈值的神经元</strong>构成的网络具有更好的性能，可以提高容错率和存储容量。</p></li>
-<li><p>非局限性</p>
-<p>一个系统的整体行为不仅取决于单个神经元的特征，而且可能主要由单元之间的相互作用、相互连接决定。<strong>联想记忆</strong>是非局限性的典型例子。</p></li>
-<li><p>非常定性</p>
-<p>自适应、自组织、自学习能力。ANN处理的信息由各自的变化，在处理信息时，非线性动力系统本身也在不断变化。常采用迭代过程<strong>描写动力系统的演化过程</strong>。</p></li>
-<li><p>非凸性</p>
-<p>一个系统的演化方向，在一定条件下将取决于某个特定的状态函数。如能量函数，其极值对应系统比较稳定的状态。非凸性指的是这种函数有<strong>多个极值</strong>，故系统有多个平衡态，系统演化具有多样性。</p></li>
-</ol>
-<h6 id="神经元处理单元">神经元处理单元</h6>
-<p>可以表示不同的对象：</p>
-<ul>
-<li>特征</li>
-<li>字母</li>
-<li>概念</li>
-<li>有意义的抽象模式</li>
-</ul>
-<h6 id="网络中的处理单元">网络中的处理单元</h6>
-<ol type="1">
-<li>输入单元：接受外部信号与数据</li>
-<li>隐单元：不能由系统外部观察的单元</li>
-<li>输出单元：处理输出结果</li>
-</ol>
+<li><p>评测通过：AC不必多说。</p></li>
+<li><p>答案错误：表明代码没有错，但是运行结果不对。</p></li>
+<li><p>运行错误：表示有数组越界……</p>
 <blockquote>
-<p>神经元间的连接权值反映了单元间的连接强度，信息的表示和处理体现在网络处理单元的连接关系中。</p>
-</blockquote>
-<h6 id="人工神经元模型">人工神经元模型</h6>
+<p>你的程序在运行时出现了错误，并且这个错误导致程序无法进行下一步处理。导致运行时错误的原因有很多种，具体根据实际代码、数据和实际运行环境进行分析。下面是几个常见的原因：</p>
 <ol type="1">
-<li>一组连接：含权值，正值为激活，负值为抑制。</li>
-<li>一个加法器：用于求输入信号对神经元的相应突触加权之和。</li>
-<li>一个激活函数：也称压制函数，将输入它的信号限制到一定区间。通常为[-1,1]或[0,1]
-<ol type="1">
-<li>域值函数，即阶梯函数。</li>
-<li>分段线性函数。</li>
-<li>非线性转移函数。常用的是单极性Sigmoid函数曲线又称Logistic函数曲线。</li>
-</ol></li>
+<li>内存访问错误：程序试图读取或者写入内存区域没有访问权限，比如从0地址内存读取或写入数据，数组越界等。</li>
+<li>除零错误：运行时除数为0，会导致这个错误。</li>
+<li>浮点数错误：因为要操作的浮点数太大或者太小导致系统无法表示该浮点数，都会导致这个错误。不同的浮点数类型都有其表示范围大小。</li>
+<li>栈溢出：在调用函数时，函数地址、函数参数、局部变量等信息存储于栈内存，当函数调用层过深时，会出现这个错误，比如递归调用太深。</li>
 </ol>
-<p>*4. 外部偏置：b<sub>k</sub>根据其正负用来增加或降低激活函数的网络输入。</p>
-<h6 id="神经网络的类型">神经网络的类型</h6>
-<p>（1）网络性能角度：</p>
-<ol type="1">
-<li>连续性网络</li>
-<li>离散型网络</li>
-<li>确定性网络</li>
-<li>随机性网络</li>
+</blockquote></li>
+<li><p>编译错误：使用了OJ的编译器中没有定义的函数等</p></li>
+<li><p>时间超限：运行时间过长，通常是死循环</p></li>
 </ol>
-<p>（2）网络结构角度</p>
+<h6 id="二软件工程的一些想法">（二）软件工程的一些想法。</h6>
 <ol type="1">
-<li>前向神经网络</li>
-<li>反馈网络</li>
+<li>设计软件之前一定要画大纲图！同时初步构思各个类的组成，以及整个程序的模块化分部。自顶向下，逐步求精。</li>
+<li>修改软件核心代码时要保留原有优点的情况下谨慎修改。同时修改后要在日志上做好记录有什么修改正确的地方。</li>
+<li>代码的设计一定严格符合用户需求以及输入输出需要。设计代码之前一定要判断所有的情况，看清用户需求文件。</li>
 </ol>
-<p>（3）学习方式角度</p>
+<h6 id="三编程心理">（三）编程心理。</h6>
 <ol type="1">
-<li>有导师学习网络（有监督）</li>
-<li>无导师学习网络（无监督）</li>
-</ol>
-<p>（4）连续突触性质角度</p>
-<ol type="1">
-<li>一阶线性关联网络</li>
-<li>高阶非线性关联网络</li>
-</ol>
-<p>（5）神经元连接方式角度</p>
-<ol type="1">
-<li><p>分层网络</p>
-<ul>
-<li><p>单纯的前向型网络</p></li>
-<li><p>具有反馈的前向型网络</p></li>
-<li><p>层内互联的前向型网络</p></li>
-</ul></li>
-<li><p>相互连接网络</p></li>
-</ol>
-<h6 id="神经网络学习所需要的数据">神经网络学习所需要的数据</h6>
-<ol type="1">
-<li><p>训练数据（train）</p></li>
-<li><p>确认数据（validation）</p></li>
-<li><p>测试数据（test）</p></li>
+<li>编程过程中要瞻前顾后，并且及时做好备注。</li>
+<li>编程要学会不放弃。</li>
+<li>提高编程效率并不意味着没有垃圾效率时间。</li>
 </ol>
 
     </div>
@@ -301,7 +253,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/ANN/" rel="tag"># ANN</a>
+              <a href="/tags/thoughts/" rel="tag"># thoughts</a>
           </div>
 
         
@@ -310,13 +262,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/07/Crawlers/" rel="prev" title="Python Crawlers Foundation">
-      <i class="fa fa-chevron-left"></i> Python Crawlers Foundation
+    <a href="/2021/09/07/ANN-concept/" rel="prev" title="ANN Foundation">
+      <i class="fa fa-chevron-left"></i> ANN Foundation
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/11/19/20211119/" rel="next" title="生活随记">
-      生活随记 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -375,7 +324,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">基本要素</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.0.0.1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E5%85%83%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83"><span class="nav-number">1.0.0.1.2.</span> <span class="nav-text">神经元处理单元</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83"><span class="nav-number">1.0.0.1.3.</span> <span class="nav-text">网络中的处理单元</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E5%85%83%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.0.0.1.4.</span> <span class="nav-text">人工神经元模型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.0.0.1.5.</span> <span class="nav-text">神经网络的类型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.0.0.1.6.</span> <span class="nav-text">神经网络学习所需要的数据</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%80oj%E7%9A%84%E8%BF%90%E8%A1%8C%E4%B8%8E%E5%88%A4%E5%AE%9A%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">（一）OJ的运行与判定过程。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BA%8C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">（二）软件工程的一些想法。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%89%E7%BC%96%E7%A8%8B%E5%BF%83%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">（三）编程心理。</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
