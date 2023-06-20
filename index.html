@@ -177,7 +177,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-06-21 00:45:15 / Modified: 00:58:33" itemprop="dateCreated datePublished" datetime="2023-06-21T00:45:15+08:00">2023-06-21</time>
+              <time title="Created: 2023-06-21 00:45:15 / Modified: 01:01:58" itemprop="dateCreated datePublished" datetime="2023-06-21T00:45:15+08:00">2023-06-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,17 +232,18 @@
 <tr class="odd">
 <td>动作 Action</td>
 <td></td>
-<td>$ $</td>
+<td><span class="math display">\[ \textbf{A_t}\]</span></td>
 </tr>
 <tr class="even">
 <td>回报 Reward</td>
 <td></td>
-<td>$ $</td>
+<td><span class="math display">\[ \textbf{R_t}\]</span></td>
 </tr>
 <tr class="odd">
 <td>状态 State</td>
 <td></td>
-<td>$ ={s_1, s_2, ...s_n}$</td>
+<td><span class="math display">\[ \textbf{S_t}=\{s_1, s_2,
+...s_n\}\]</span></td>
 </tr>
 <tr class="even">
 <td>优势 Advantage</td>
@@ -252,42 +253,48 @@
 <tr class="odd">
 <td>策略 Policy</td>
 <td></td>
-<td><span class="math inline">\(\mathbb{\pi}\)</span></td>
+<td><span class="math display">\[\mathbb{\pi}\]</span></td>
 </tr>
 <tr class="even">
 <td>状态期望回报</td>
 <td></td>
-<td>$ =(r_1,r_2,...r_n)$</td>
+<td><span class="math display">\[
+\textbf{r}=(r_1,r_2,...r_n)\]</span></td>
 </tr>
 <tr class="odd">
 <td>策略<span class="math inline">\(\pi\)</span>下状态期望回报</td>
 <td></td>
-<td>$ =(r^_1,r^_2,...r^_n)$</td>
+<td><span class="math display">\[
+\textbf{r^\pi}=(r^\pi_1,r^\pi_2,...r^\pi_n)\]</span></td>
 </tr>
 <tr class="even">
 <td>行动期望回报</td>
 <td></td>
-<td>$ =(r^a_s)_{nm}$</td>
+<td><span class="math display">\[ \textbf{R}=(r^a_s)_{n\times
+m}\]</span></td>
 </tr>
 <tr class="odd">
 <td>折现因子</td>
 <td></td>
-<td><span class="math inline">\(\gamma\)</span></td>
+<td><span class="math display">\[\gamma\]</span></td>
 </tr>
 <tr class="even">
 <td>状态转移矩阵（不带动作）</td>
 <td></td>
-<td>$ =(p_{ss^})_{nn}$</td>
+<td><span class="math display">\[ \textbf{P}=(p_{ss^\prime})_{n\times
+n}\]</span></td>
 </tr>
 <tr class="odd">
 <td>策略<span class="math inline">\(\pi\)</span>下状态转移矩阵</td>
 <td></td>
-<td>$ =(p^<em>{ss^})</em>{nn}$</td>
+<td><span class="math display">\[
+\textbf{P^\pi}=(p^\pi_{ss^\prime})_{n\times n}\]</span></td>
 </tr>
 <tr class="even">
 <td>状态转移矩阵（带动作）</td>
 <td></td>
-<td>$ =(p<sup>a_{ss</sup>})_{nnm}$</td>
+<td><span class="math display">\[ \textbf{P}=(p^a_{ss^\prime})_{n\times
+n\times m}\]</span></td>
 </tr>
 </tbody>
 </table>
