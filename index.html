@@ -177,7 +177,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-06-21 00:45:15 / Modified: 03:05:02" itemprop="dateCreated datePublished" datetime="2023-06-21T00:45:15+08:00">2023-06-21</time>
+              <time title="Created: 2023-06-21 00:45:15 / Modified: 03:05:28" itemprop="dateCreated datePublished" datetime="2023-06-21T00:45:15+08:00">2023-06-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -204,15 +204,391 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="强化学习数学基础">强化学习数学基础</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/21/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91Reinforcement%20Learning/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <span id="more"></span>
+<table>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>名词</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>环境 Environment</td>
+<td><span class="math display">\[ Env\]</span></td>
+</tr>
+<tr class="even">
+<td>智能体 Agent</td>
+<td><span class="math display">\[ Agent\]</span></td>
+</tr>
+<tr class="odd">
+<td>动作 Action</td>
+<td><span class="math display">\[ A_t\]</span></td>
+</tr>
+<tr class="even">
+<td>回报 Reward</td>
+<td><span class="math display">\[ R_t\]</span></td>
+</tr>
+<tr class="odd">
+<td>状态 State</td>
+<td><span class="math display">\[ S_t=\{s_1, s_2, ...s_n\}\]</span></td>
+</tr>
+<tr class="even">
+<td>优势 Advantage</td>
+<td><span class="math display">\[ \mathbf{Adv} \]</span></td>
+</tr>
+<tr class="odd">
+<td>策略 Policy</td>
+<td><span class="math display">\[\mathbb{\pi}\]</span></td>
+</tr>
+<tr class="even">
+<td>状态期望回报</td>
+<td><span class="math display">\[
+\mathbf{r}=(r_1,r_2,...r_n)\]</span></td>
+</tr>
+<tr class="odd">
+<td>策略<span class="math inline">\(\pi\)</span>下状态期望回报</td>
+<td><span class="math display">\[
+\mathbf{r^\pi}=(r^\pi_1,r^\pi_2,...r^\pi_n)\]</span></td>
+</tr>
+<tr class="even">
+<td>行动期望回报</td>
+<td><span class="math display">\[ \mathbf{R}=(r^a_s)_{n\times
+m}\]</span></td>
+</tr>
+<tr class="odd">
+<td>折现因子</td>
+<td><span class="math display">\[\gamma\]</span></td>
+</tr>
+<tr class="even">
+<td>状态转移矩阵（不带动作）</td>
+<td><span class="math display">\[ \mathbf{P}=(p_{ss^\prime})_{n\times
+n}\]</span></td>
+</tr>
+<tr class="odd">
+<td>策略<span class="math inline">\(\pi\)</span>下状态转移矩阵</td>
+<td><span class="math display">\[
+\mathbf{P^\pi}=(p^\pi_{ss^\prime})_{n\times n}\]</span></td>
+</tr>
+<tr class="even">
+<td>状态转移矩阵（带动作）</td>
+<td><span class="math display">\[ \mathbf{P}=(p^a_{ss^\prime})_{n\times
+n\times m}\]</span></td>
+</tr>
+</tbody>
+</table>
+<!--
+$\textcolor{red}{aaa}$
+-->
+<h2 id="状态">状态</h2>
+<h2 id="状态转移矩阵">状态转移矩阵</h2>
+<p><span class="math display">\[
+p_{ss^\prime}=P(S_{t+1}=s^\prime|S_t=s)
+\]</span></p>
+<h2 id="动作状态转移矩阵">动作状态转移矩阵</h2>
+<p><span class="math display">\[
+p^a_{ss^\prime}=P(S_{t+1}=s^\prime|S_t=s,A_t=a)
+\]</span></p>
+<h2 id="累计回报">累计回报</h2>
+<p><span class="math display">\[
+G_t = R_{t+1} + \gamma R_{t+2} + ...+=\sum_{k=0}^\infty
+\gamma^kR_{t+k+1}
+\]</span></p>
+<h2 id="状态期望回报">状态期望回报</h2>
+<p>仅纳入当前值，对状态进行量化，状态期望回报是回报在当前状态条件下的期望值。
+<span class="math display">\[
+r_s=E[R_{t+1}|S_{t}=s]=\sum_{r\in \textbf{R}}rp(r|S_{t}=s)
+\]</span></p>
+<h2 id="状态价值函数">状态价值函数</h2>
+<p>纳入当前值和未来可能的值，对状态进行量化，状态价值函数是当前状态条件下累积回报的期望值。
+<span class="math display">\[
+\begin{aligned}
+v(s) &amp; =E[G_t|S_t=s] \\
+&amp; = E[R_{t+1} + \gamma G_{t+1}|S_t=s] \\
+&amp; = E[R_{t+1} + \gamma G_{t+1}|S_t=s] \\
+&amp; = E[R_{t+1} |S_t=s] + \gamma E[G_{t+1}|S_t=s] \\
+&amp; = E[R_{t+1} |S_t=s] + \gamma E[v(S_{t+1})|S_t=s] \\
+&amp; = r_s + \gamma \sum_{s^\prime\in
+\textbf{S}}p_{ss^\prime}v(s^\prime)
+\end{aligned}
+\]</span></p>
+<p>其中第二步的推导如下列公式所示 <span class="math display">\[
+\begin{aligned}
+E[G_{t+1}|S_t=s]
+&amp; =
+E_{S_{t+1}|S_t=s}\{E_{G_{t+1}|S_{t+1}}[[G_{t+1}|S_{t+1}]|S_t=s]\} \\
+&amp; = E_{S_{t+1}|S_t=s}\{v(S_{t+1})|S_t=s\} \\
+&amp; = \sum_{s^\prime\in \textbf{S}}p_{ss^\prime}v(s^\prime)
+\end{aligned}
+\]</span> 对于多个状态而言 <span class="math display">\[
+\begin{aligned}
+v(s_1) &amp; = r_{s_1} + \gamma \sum_{s^\prime\in
+\textbf{S}}p_{s_1s^\prime}v(s^\prime) \\
+v(s_2) &amp; = r_{s_2} + \gamma \sum_{s^\prime\in
+\textbf{S}}p_{s_2s^\prime}v(s^\prime) \\
+... \\
+v(s_3) &amp; = r_{s_3} + \gamma \sum_{s^\prime\in
+\textbf{S}}p_{s_3s^\prime}v(s^\prime) \\
+\\
+&amp;\Rightarrow  \textbf{v}= \textbf{r}+\gamma \textbf{P} \textbf{v} \\
+&amp;\Rightarrow  \textbf{v}=( \textbf{I}-\gamma \textbf{P})^{-1}
+\textbf{r} \\
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p>模型已知 ( <strong>P</strong> 已知)</p>
+<ul>
+<li><p>小规模问题，直接解方程求解</p></li>
+<li><p>大规模问题，用迭代方法求解</p></li>
+</ul></li>
+</ul>
+<p>​ 动态规划</p>
+<ul>
+<li><p>模型未知</p>
+<ul>
+<li><p>蒙特卡洛</p></li>
+<li><p>时序差分</p></li>
+</ul></li>
+</ul>
+<h2 id="动作">动作</h2>
+<h2 id="行动期望回报">行动期望回报</h2>
+<p>执行某一个动作后可以获得的奖励 <span class="math display">\[
+r^a_s=E[R_{t+1}|S_t=s,A_t=a]
+\]</span></p>
+<p>策略的数学表示</p>
+<p>确定性策略 <span class="math display">\[
+\pi(s)=a
+\]</span> 非确定性策略 <span class="math display">\[
+\pi(a\ |\ s)=P(A_t=a|S_t=s)
+\]</span> 策略<span class="math inline">\(\pi\)</span>和状态转移矩阵的通过全概率公式关联
+<span class="math display">\[
+\begin{aligned}
+p^\pi_{ss^\prime} &amp;= P(S_{t+1} = s^\prime | S_t=s) \\
+&amp;= \sum_{a\in \textbf{A}} P(S_{t+1} = s^\prime,A_t=a|S_t=s) \\
+&amp;= \sum_{a\in \textbf{A}} P(A_t=a|S_t=s)P(S_{t+1} =
+s^\prime|A_t=a,S_t=s) \\
+&amp;= \sum_{a\in \textbf{A}} \pi(a|s)p^a_{ss^\prime} \\
+\end{aligned}
+\]</span> 同时策略<span class="math inline">\(\pi\)</span>下状态期望回报
+<span class="math display">\[
+\begin{aligned}
+r^\pi_{s} = \sum_{a\in \textbf{A}} \pi(a|s)r^a_s \\
+\end{aligned}
+\]</span></p>
+<h2 id="行动价值函数">行动价值函数</h2>
+<p>状态价值函数(贝尔曼方程)如下 <span class="math display">\[
+\begin{aligned}
+v(s) &amp; =E[G_t|S_t=s] \\
+&amp; = E[R_{t+1} + \gamma G_{t+1}|S_t=s] \\
+&amp; = E[R_{t+1} + \gamma G_{t+1}|S_t=s] \\
+&amp; = E[R_{t+1} |S_t=s] + \gamma E[G_{t+1}|S_t=s] \\
+&amp; = r_s + \gamma \sum_{s^\prime\in
+\textbf{B}}p_{ss^\prime}v(s^\prime)
+\end{aligned}
+\]</span>
+纳入当前价值和未来价值对行动进行量化，得到行动的量化值。行动价值函数定义如下
+（行动价值由后续状态价值的期望计算） <span class="math display">\[
+\begin{aligned}
+q_\pi(s,a)&amp; = E[G_t|S_t=s,A_t=a] \\
+&amp; = r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}v_\pi(s^\prime)
+\end{aligned}
+\]</span></p>
+<p>可以根据行动价值函数与策略<span class="math inline">\(\pi\)</span>计算状态价值函数（状态价值是同时刻行动价值的期望）
+<span class="math display">\[
+\begin{aligned}
+v_\pi(s)&amp; = E[G_t|S_t=s] \\
+&amp; = \sum_{g}gp(g|S_t=s) \\
+&amp; = \sum_{g}g\sum_{a\in \textbf{A}}p(g,A_t=a|S_t=s) \\
+&amp; = \sum_{g}g\sum_{a\in \textbf{A}}p(g|A_t=a|S_t=s)p(A_t=a|S_t=s) \\
+&amp; = \sum_{g}g\sum_{a\in \textbf{A}}p(g|A_t=a,S_t=s)p(A_t=a|S_t=s) \\
+&amp; = \sum_{g}g\sum_{a\in \textbf{A}}\pi(a|s)p(g|A_t=a,S_t=s) \\
+&amp; = \sum_{a\in \textbf{A}}\pi(a|s)\sum_{g}gp(g|A_t=a,S_t=s) \\
+&amp; = \sum_{a\in \textbf{A}}\pi(a|s)q_\pi(s,a) \\
+\end{aligned}
+\]</span></p>
+<p>行动价值函数：</p>
+<ul>
+<li>状态为<span class="math inline">\(s\)</span>时取动作<span class="math inline">\(a\)</span>后续按照策略<span class="math inline">\(\pi\)</span>来进行的期望累计回报</li>
+</ul>
+<p>状态价值和行动价值之间的联系：</p>
+<ul>
+<li><p>状态价值是同时刻行动价值的期望</p></li>
+<li><p>行动价值由后续状态价值的期望计算</p></li>
+</ul>
+<h2 id="优势函数-advantage">优势函数 advantage</h2>
+<p>行动价值函数和状态价值函数的差值 <span class="math display">\[
+A_\pi(s,a)=Q_\pi(s,a)-V_\pi(s)
+\]</span></p>
+<h2 id="最优性">最优性</h2>
+<p>设最优策略为<span class="math inline">\(\pi_*\)</span>满足以下条件</p>
+<p><span class="math inline">\(\pi_*\ge \pi^\prime:v_{\pi_*}(s)\ge
+v_{\pi^\prime}(s),\forall s, \forall \pi^\prime\)</span></p>
+<p>最优策略下状态价值取得最大值</p>
+<ul>
+<li>最优状态价值即最优策略下的行动价值</li>
+</ul>
+<p><span class="math display">\[
+v_{*}(s)=\underset{\pi}{\max}v_{\pi}(s)=v_{\pi_*}(s)
+\]</span></p>
+<ul>
+<li>最优行动价值即为最优策略下的行动价值。</li>
+</ul>
+<p><span class="math display">\[
+q_{*}(s,a)=\underset{\pi}{\max}q_{\pi}(s, a)=q_{\pi_*}(s,a)
+\]</span></p>
+<p>推导原理：行动价值由后续状态价值的期望计算 <span class="math display">\[
+q_\pi(s,a)=r_s^a+\gamma \sum_{s^\prime\in \textbf{S}}
+p^a_{ss^\prime}v_\pi(s^\prime)
+\]</span> 故取最大值时即策略取最优策略。</p>
+<h2 id="贝尔曼期望方程">贝尔曼期望方程</h2>
+<p><span class="math display">\[
+v_\pi(s)=\sum_{a\in \textbf{A}}\pi(a|s)q_{\pi}(s,a)
+\]</span></p>
+<p><span class="math display">\[
+q_\pi(s,a)=r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}v_\pi(s^\prime)
+\]</span></p>
+<p>后式代入前式得状态价值的贝尔曼期望方程 <span class="math display">\[
+v_\pi(s)=\sum_{a\in \textbf{A}}\pi(a|s)\left \{r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}v_\pi(s^\prime)\right
+\}
+\]</span> 前式代入后式得状态价值的贝尔曼期望方程 <span class="math display">\[
+q_\pi(s,a)=r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p_{ss^\prime}\left\{ \sum_{a^\prime
+\in  \textbf{A}}\pi(a^\prime|s^\prime)q_\pi(s^\prime,a^\prime) \right\}
+\]</span></p>
+<h2 id="贝尔曼最优方程">贝尔曼最优方程</h2>
+<p>状态价值贝尔曼最优方程 <span class="math display">\[
+v_*(s)=\underset{a\in \textbf{A}}{\operatorname{max}}q_*(s,a)
+\]</span></p>
+<p><span class="math display">\[
+q_*(s,a)=r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}v_*(s^\prime)
+\]</span></p>
+<p><span class="math display">\[
+v_*(s) = r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}v_*(s^\prime)
+\]</span></p>
+<p><span class="math display">\[
+q_*(s,a) = r_s^a + \gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}
+\underset{a^\prime\in
+\textbf{A}}{\operatorname{max}}q_*(s^\prime,a^\prime)
+\]</span></p>
+<h1 id="常见方法">常见方法</h1>
+<h1 id="预测问题计算价值函数评价给定策略">预测问题：计算价值函数，评价给定策略</h1>
+<h2 id="基于价值函数">基于价值函数</h2>
+<h2 id="基于状态转移模型model-based">基于状态转移模型（Model-based）</h2>
+<ul>
+<li>线性方程</li>
+<li>动态规划</li>
+</ul>
+<h2 id="不基于状态转移模型model-free">不基于状态转移模型（Model-free）</h2>
+<ul>
+<li>蒙特卡洛预测</li>
+<li>时序差分预测</li>
+</ul>
+<h2 id="近似方法">近似方法</h2>
+<ul>
+<li>线性回归</li>
+<li>深度学习</li>
+</ul>
+<h2 id="基于策略模型">基于策略模型</h2>
+<h1 id="控制问题优化价值函数获得最优策略">控制问题：优化价值函数，获得最优策略</h1>
+<h2 id="基于价值函数-1">基于价值函数</h2>
+<h2 id="基于状态转移模型model-based-1">基于状态转移模型（Model-based）</h2>
+<ul>
+<li>策略迭代</li>
+<li>价值迭代</li>
+</ul>
+<h2 id="不基于状态转移模型model-free-1">不基于状态转移模型（Model-free）</h2>
+<ul>
+<li>蒙特卡洛控制</li>
+<li>时序差分控制：SARSA, Q-learning</li>
+</ul>
+<h2 id="近似方法-1">近似方法</h2>
+<ul>
+<li>线性回归</li>
+<li>深度学习：DQN</li>
+</ul>
+<h2 id="基于策略模型-1">基于策略模型</h2>
+<h1 id="如何求解最优策略">如何求解最优策略？</h1>
+<p>策略改进可以提升状态价值</p>
+<p>基于原来的策略<span class="math inline">\(\pi\)</span>产生新策略<span class="math inline">\(\pi^\prime\)</span></p>
+<h2 id="线性方程">1. 线性方程</h2>
+<p><span class="math display">\[
+\textbf{v}_{\pi}=
+\textbf{r}_s^\pi+\gamma  \textbf{P}^\pi  \textbf{v}_\pi
+\]</span></p>
+<p><span class="math display">\[
+\textbf{v}_\pi = ( \textbf{I}-\gamma \textbf{P}^\pi)^{-1}
+\textbf{r}_s^\pi
+\]</span></p>
+<h2 id="动态规划">2. 动态规划</h2>
+<p><strong>Model
+Base：</strong>值迭代和策略迭代，model-base具有前提条件奖励R,
+状态转移矩阵P ，即环境模型已知【离线策略求解】</p>
+<h3 id="策略评估">策略评估</h3>
+<p>给定策略<span class="math inline">\(\pi\)</span>，策略评估用于计算状态价值函数： <span class="math display">\[
+v_{t+1}(s)= \mathbb{E}[r+\gamma v_t(s^\prime)|S_t=s] =
+\sum_{a}\pi(a|s)\left\{ \sum_{s^\prime,r}p(s^\prime,r|s,a)(r+\gamma
+v_t(s^\prime)) \right\}
+\]</span></p>
+<h3 id="策略改进">策略改进</h3>
+<p>基于价值函数，策略改进，通过更贪婪的行为生成更好的策略<span class="math inline">\(\pi^\prime \ge \pi\)</span> <span class="math display">\[
+q_\pi(s,a)=\mathbb{E}[R_{t+1}+\gamma v_\pi(S_{t+1})|S_t=s,A_t=a]
+=\sum_{s^\prime,r}p(s^\prime,r|s,a)(r+\gamma v(s^\prime))
+\]</span></p>
+<h3 id="策略迭代-generalized-policy-iteration-gpi">策略迭代 (Generalized
+Policy Iteration, GPI)</h3>
+<p><span class="math display">\[
+\pi_0 \xrightarrow{\text{evaluation}}
+V_{\pi_0}\xrightarrow{\text{improve}}\pi_1\xrightarrow{\text{evaluation}}V_{\pi_1}\xrightarrow{\text{improve}}...\xrightarrow{\text{improve}}\pi_*
+\xrightarrow{\text{evaluation}} V_{*}
+\]</span></p>
+<p>在GPI中，价值函数通过重复地迭代来不断接近当前策略的实际值。与此同时，策略也在此过程中不断接近最优策略。使用贪婪方式生成
+<span class="math display">\[
+\pi^\prime(s)=\underset{a\in \textbf{A}}{\text{argmax}}\ Q_\pi(s,a)
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+q_\pi(s,\pi^\prime(s)) &amp; = q_\pi(s, \underset{a\in
+\textbf{A}}{\text{argmax}\ q_\pi(s,a)}) \\
+&amp;=\underset{a\in \textbf{A}}{\max}q_\pi(s,a)\ge
+q_\pi(s,\pi(s))=v_\pi(s)
+\end{aligned}
+\]</span></p>
+<p>每次循环可以得到一个新的<span class="math inline">\(q_\pi(s,\pi(s))=v_\pi(s)\)</span>下轮的时候自然会把<span class="math inline">\(v_{\pi^\prime}\)</span>提升</p>
+<blockquote>
+<p>价值迭代</p>
+</blockquote>
+<h2 id="蒙特卡洛方法-monte-carlo-mc">3. 蒙特卡洛方法 Monte-Carlo MC</h2>
+<p>根据弱大数定理使用均值对数学期望进行近似。 <span class="math display">\[
+v_\pi(s)=\mathbb{E}[G_t|S_t=s]\approx\frac{1}{n}\sum_{i=1}^nG_i
+\]</span> 近似计算状态价值的基本算法是根据待评价的策略产生一个观测片段
+<span class="math display">\[
+S_1,A_1,R_2,S_2,A_2...S_T,A_T,R_{T+1}
+\]</span> 此时视<span class="math inline">\(R_{T+1}\)</span>为终止状态，则累计回报是 <span class="math display">\[
+G_t^i=R_{t+1}+\gamma R_{t+2}+...+\gamma^{T-t}R_{T+1}
+\]</span> 重复n次计算，然后对凭此计算的结果取平均值得到状态价值的估计
+<span class="math display">\[
+V(S_t)=\frac{1}{n}\sum_{i=1}^nG_t^i
+\]</span>
+均值的计算可以采用递增式的计算方式，这种计算方式可以减少空间占用 <span class="math display">\[
+\overline{X}_k = \overline{X}_{k-1}+\frac{1}{k}(X_k-\overline{X}_{k-1})
+\]</span> 因此增量式蒙特卡洛预测更新如下 <span class="math display">\[
+V(S_t) \leftarrow V(S_t) + \frac{1}{k}(G_t-V(S_t))
+\]</span> 也可以采用定步长更新的方式，使用误差值<span class="math inline">\(G_t=V(S_t)\)</span>修正<span class="math inline">\(V(S_t)\)</span> <span class="math display">\[
+V(S_t) \leftarrow V(S_t) + \alpha(G_t-V(S_t))
+\]</span></p>
+<p>这里区分两种计算方法：首次访问蒙特卡洛，以及每次访问蒙特卡洛。前者是指当且仅当
+<em>t</em> 时刻所处的状态等于待评价的状态
+<em>s</em>，且之前没有出现过该状态时，才将仿真结果纳入最终的平均值计算。后者是指只要观测片段中出现待估计的目标状态，不论是不是出现在最开始，仿真结果都用来计算该状态的平均值。在操作上，每次访问算法不检查之前是不是出现过待评价状态。</p>
+
       
     </div>
 
@@ -262,7 +638,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-06-21 03:04:21" itemprop="dateModified" datetime="2023-06-21T03:04:21+08:00">2023-06-21</time>
+                <time title="Modified: 2023-06-21 03:05:35" itemprop="dateModified" datetime="2023-06-21T03:05:35+08:00">2023-06-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -289,15 +665,318 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="数据结构的实现过程及复杂度分析">数据结构的实现过程及复杂度分析</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <span id="more"></span>
+<h2 id="数据结构的实现过程及复杂度分析">数据结构的实现过程及复杂度分析</h2>
+<p>AVL树和红黑树都是二叉搜索树的一种，二叉搜索树是二叉树的一种，二叉树是树的一种，树由结点组成，每个结点由父亲和孩子结点。</p>
+<p><img src="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601170126296.png" alt="image-20220601170126296" style="zoom:50%;"></p>
+<h3 id="实现思路">实现思路</h3>
+<p>因而实现时可以从结点出发，设计二叉树（BT）的结构，进而设计二叉搜索树（BST）的结构，进而设计二叉搜索树（BBST）的结构。然后从二叉搜素树派生出AVL树和红黑树。以下代码简单展示了从结点出发各个父类与派生类的实现。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 结点的定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Node* parent; Node* lc;Node* rc;</span><br><span class="line">    <span class="keyword">int</span> height;</span><br><span class="line">    RBcolor color;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BT</span> &#123;</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">int</span> _size; Node* _root;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">updataHeight</span><span class="params">(Node* x)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updataHeightAbove</span><span class="params">(Node* x)</span></span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">BT</span>() &#123; _size = <span class="number">0</span>; _root = <span class="literal">NULL</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BST</span> :</span> <span class="keyword">public</span> BT &#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    Node* _hot; <span class="comment">// 搜索时命中节点的父亲</span></span><br><span class="line">    <span class="function">Node* <span class="title">restruct</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">        Node* a, Node* b, Node* c,</span></span></span><br><span class="line"><span class="params"><span class="function">        Node* T1, Node* T2, Node* T3, Node* T4)</span></span>;</span><br><span class="line">    <span class="function">Node* <span class="title">rotatePG</span><span class="params">(Node* x)</span></span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node*&amp; <span class="title">search</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function">Node* <span class="title">insert</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AVL</span> :</span> <span class="keyword">public</span> BST &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">insert</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">avl_search</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">showheight</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> _root ? _root-&gt;height : <span class="number">0</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RBT</span> :</span> <span class="keyword">public</span> BST &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">insert</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rb_search</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">showheight</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> _root ? _root-&gt;height : <span class="number">0</span>; &#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">solveRR</span><span class="params">(Node* x)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">solveBB</span><span class="params">(Node* r)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">updataHeight</span><span class="params">(Node* x)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="由实现思路与代码能够看出通用的接口如下">由实现思路与代码能够看出通用的接口如下</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">insert</span>(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span><br><span class="line"><span class="built_in">remove</span>(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span><br><span class="line"><span class="built_in">search</span>(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span><br></pre></td></tr></table></figure>
+<h4 id="渐进平衡所需要的平衡条件如下">渐进平衡所需要的平衡条件如下</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> h(x) ((x) ? (x)-&gt;height : -1) <span class="comment">// 除红黑树外的BST节点高度</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> H(x) ((x) ? (x)-&gt;height : 0) <span class="comment">// 红黑树的节点黑高度</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> factor(x)  (h(x-&gt;rc) - h(x-&gt;lc))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AVLbalanced(x)  ((factor(x) &gt; -2) &amp;&amp; (factor(x) &lt; 2))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RBbalacned(x) ( \</span></span><br><span class="line"><span class="meta">    (H(l(x)) == H(r(x))) &amp;&amp; \</span></span><br><span class="line"><span class="meta">    (H(x) == (isred(x) ? H(l(x)) : H(l(x)) + 1) )\</span></span><br><span class="line"><span class="meta">)</span></span><br></pre></td></tr></table></figure>
+<h4 id="渐进平衡在动态操作中通用旋转方案如下">渐进平衡在动态操作中通用旋转方案如下</h4>
+<p>主要是"3-4"重构函数和旋转函数（下图源于维基百科）</p>
+<p><img src="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601174538405.png" alt="image-20220601174538405" style="zoom:50%;"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node* <span class="title">BST::restruct</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    Node* a, Node* b, Node* c,</span></span></span><br><span class="line"><span class="params"><span class="function">    Node* T1, Node* T2, Node* T3, Node* T4)</span></span></span><br><span class="line"><span class="function">Node* <span class="title">BST::rotatePG</span><span class="params">(Node* x)</span> </span></span><br></pre></td></tr></table></figure>
+<p><img src="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601171526607.png" alt="image-20220601171526607" style="zoom:33%;"></p>
+<h4 id="扩充语义的搜索">扩充语义的搜索</h4>
+<p>AVL和红黑树扩充语义搜索都是相同的。按照常规搜索进行寻找，增加ans作为判断，记录沿途不超过搜索值的最大值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">AVL::avl_search</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!_root) &#123; <span class="keyword">return</span> <span class="number">-1</span>; &#125;</span><br><span class="line">    Node* tmp = _root;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        Node* v = tmp;</span><br><span class="line">        <span class="keyword">if</span> (e &lt; tmp-&gt;data) &#123;</span><br><span class="line">            v = tmp-&gt;lc;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, tmp-&gt;data);</span><br><span class="line">            v = tmp-&gt;rc;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!v) <span class="keyword">return</span> ans;</span><br><span class="line">        tmp = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="avl树">AVL树</h3>
+<h4 id="自平衡实现过程">自平衡实现过程</h4>
+<h5 id="插入与旋转">插入与旋转</h5>
+<p>插入时，经过一次旋转即可将全树复衡。</p>
+<h5 id="删除与旋转">删除与旋转</h5>
+<p>删除时，经过一次旋转后，失衡可能会向父节点广播。因此最差要旋转<span class="math inline">\(O(logn)\)</span>次。失衡广播的原因是：在删除一个结点时，为了保证局部的平衡，必然要进行旋转，而旋转后可能会导致该局部的高度降低，从而使得更高父节点左右子树的高度差值不满足平衡条件。</p>
+<h4 id="复杂度分析">复杂度分析</h4>
+<h5 id="时间复杂度分析">时间复杂度分析</h5>
+<ul>
+<li><p>插入操作：插入操作首先得经过一般意义上的搜索（查找到数据值相等的数据）时间复杂度是<span class="math inline">\(O(logn)\)</span>。节点最多被旋转1次（双旋算1次），每次AVL旋转耗时是固定的常数。因而插入整体上时间复杂度是<span class="math inline">\(O(logn)\)</span>。</p></li>
+<li><p>删除操作：删除首先得经过一般意义上的搜索（查找到数据值相等的数据）。删除时是把删除的节点换到后继节点进行删除，最坏情况要从树叶旋转到树根。最多有<span class="math inline">\(logn\)</span>个节点被旋转，每次AVL旋转耗时是固定的常数。因而删除整体上时间复杂度是<span class="math inline">\(O(2logn)\)</span>。</p></li>
+<li><p>查询操作：查询操作与普通二叉查找树相同，等效为二分查找。且查找后AVL总是保持原有的结构且平衡，不需要改变树结构。因而查询整体上时间复杂度是<span class="math inline">\(O(logn)\)</span>。</p></li>
+</ul>
+<h5 id="空间复杂度分析">空间复杂度分析</h5>
+<p>AVL树的储存就是二叉树结构。每个数据占据一个节点，不重复插入数据，所有数据值都不同，没有多余的空间占用。空间复杂度是<span class="math inline">\(O(n)\)</span>.</p>
+<h3 id="红黑树">红黑树</h3>
+<h4 id="自平衡实现过程-1">自平衡实现过程</h4>
+<h5 id="插入与双红修正">插入与双红修正</h5>
+<p>插入时，插入的结点初始化为红色结点。直接插入到搜索到的位置（如果没有该数据的话是叶节点）。此时该节点可能会与父亲产生双红冲突。</p>
+<ul>
+<li>RR-1 叔叔是黑色</li>
+<li>RR-2 叔叔是红色</li>
+</ul>
+<blockquote>
+<p>具体实现见代码。</p>
+</blockquote>
+<h5 id="删除与双黑修正">删除与双黑修正</h5>
+<p>删除时</p>
+<ul>
+<li><p>删除后是空树则直接返回。</p></li>
+<li><p>删除的是根，那么将只需将根变成黑色，同时更新全树的黑高度。</p></li>
+<li><p>实际被删除的结点是红色，那么就没失衡的话，不用进行调整修正。</p></li>
+<li><p>实际被删除结点是黑色，但其代替结点是红色将该节点染成黑色，然后更新高度即可。</p></li>
+<li><p>实际被删除结点是黑色，其代替结点也是黑色</p>
+<blockquote>
+<p>实际被删除的结点是黑色，同时被删除的父节点是黑色：那么该局部的黑高度就会减1，不满足平衡条件（任何从叶节点到根的黑结点数目相同）。于是需要进行双黑修正。</p>
+</blockquote>
+<p>考察实际被删除结点（同时也是代替结点）的父亲p和兄弟s。</p>
+<ul>
+<li>BB-1：s是黑色，且s至少有一个红孩子t。
+<ul>
+<li>染色两次，旋转两次</li>
+</ul></li>
+<li>BB-2：s是黑色，且两个孩子都是黑色
+<ul>
+<li>BB-2-R：s是黑色，且两个孩子都是黑色；p是红色
+<ul>
+<li>染色一次，旋转一次</li>
+</ul></li>
+<li>BB-2-B：s是黑色，且两个孩子都是黑色；p是黑色
+<ul>
+<li>染色一次，旋转一次，可能会继续失衡（下溢）最坏为<span class="math inline">\(O(logn)\)</span>步</li>
+</ul></li>
+</ul></li>
+<li>BB-3：s是红色（暗含之意其孩子都是黑色）
+<ul>
+<li>修正后转换成BB-1或BB-2R</li>
+<li>染色两次，旋转两次</li>
+</ul></li>
+</ul></li>
+</ul>
+<blockquote>
+<p>具体实现见代码。</p>
+</blockquote>
+<h4 id="复杂度分析-1">复杂度分析</h4>
+<h5 id="时间复杂度分析-1">时间复杂度分析</h5>
+<ul>
+<li><p>插入操作：入操作首先得经过一般意义上的搜索（查找到数据值相等的数据）时间复杂度是<span class="math inline">\(O(logn)\)</span>。插入时要经过旋转和变色。双红修正时，节点最多被旋转2次，每次旋转耗时是固定的常数。因而插入整体上时间复杂度是<span class="math inline">\(O(logn)\)</span>。</p></li>
+<li><p>删除操作：删除首先得经过一般意义上的搜索（查找到数据值相等的数据）时间复杂度是<span class="math inline">\(O(logn)\)</span>。删除时也要经过旋转和变色。要需要删除时是把删除的节点换到后继节点进行删除。双黑修正时，最多旋转3次。（BB-2-B可能旋转<span class="math inline">\(O(logn)\)</span>次但比例小）每次旋转耗时是固定的常数。因而删除整体上时间复杂度是<span class="math inline">\(O(logn)\)</span>。</p></li>
+<li><p>查询操作：查询操作与普通二叉查找树相同，等效为二分查找。且查找后RBT总是保持原有的结构且平衡，不需要改变树结构。因而查询整体上时间复杂度是<span class="math inline">\(O(logn)\)</span>。</p></li>
+</ul>
+<h5 id="空间复杂度分析-1">空间复杂度分析</h5>
+<p>与AVL树相同，红黑树的储存就是二叉树结构。每个数据占据一个节点，不重复插入数据，所有数据值都不同，没有多余的空间占用。空间复杂度是<span class="math inline">\(O(n)\)</span>.</p>
+<h2 id="测例设计">测例设计</h2>
+<h4 id="测例设计思路">测例设计思路</h4>
+<p>数据范围与性能关系较小，因此统一为<span class="math inline">\(0\le
+x\le8,500,000\)</span>.</p>
+<p>测例主要从两个方面进行设计</p>
+<ul>
+<li>数据规模</li>
+<li>插入、删除、查找的比例 分别设为<span class="math inline">\(k,l,m\)</span></li>
+</ul>
+<p>数据文件是<code>1.in~6.in</code>.</p>
+<p>测试数据构造指标：1. 数据规模 2. 插入、删除、查询操作的次数</p>
+<p><code>1.in</code></p>
+<p><span class="math inline">\(k:l:m=5:3:2\)</span>
+大数据总量为100,000，插入次数是50,000,
+删除次数是30,000,查找次数均为20,000。</p>
+<p><code>2.in</code></p>
+<p><span class="math inline">\(k:l:m=5:3:2\)</span>
+更大规模数据量为1,000,000，插入次数是500,000,
+删除次数是300,000,查找次数均为200,000。</p>
+<p><code>3.in</code></p>
+<p><span class="math inline">\(k:l:m=8:1:1\)</span>
+大数据总量为100,000，插入次数是80,000,
+删除次数是10,000,查找次数均为10,000。</p>
+<p><code>4.in</code></p>
+<p><span class="math inline">\(k:l:m=8:1:1\)</span>
+更大规模数据量为1,000,000，插入次数是100,000,
+删除次数是100,000,查找次数均为100,000。</p>
+<p><code>5.in</code></p>
+<p><span class="math inline">\(k:l:m=2:1:7\)</span>
+大数据总量为100,000，插入次数是20,000,
+删除次数是10,000,查找次数均为70,000。</p>
+<p><code>6.in</code></p>
+<p><span class="math inline">\(k:l:m=2:1:7\)</span>
+更大规模数据量为1,000,000，插入次数是200,000,
+删除次数是100,000,查找次数均为700,000。</p>
+<h4 id="测例如何生成">测例如何生成</h4>
+<p>笔者设计了数据生成器进行测例的生成。</p>
+<h6 id="预定义的数据生成参数">1.预定义的数据生成参数</h6>
+<p>矩阵每行代表一组参数，四个参数依次是：规模量、插入比例、删除比例、查询比例。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> argv[<span class="number">6</span>][<span class="number">4</span>]&#123;</span><br><span class="line">    &#123;<span class="number">100000</span>, <span class="number">0.5</span>, <span class="number">0.3</span>, <span class="number">0.2</span>&#125;,</span><br><span class="line">    &#123;<span class="number">1000000</span>, <span class="number">0.5</span>, <span class="number">0.3</span>, <span class="number">0.2</span>&#125;,</span><br><span class="line">    &#123;<span class="number">100000</span>, <span class="number">0.8</span>, <span class="number">0.1</span>, <span class="number">0.1</span>&#125;,</span><br><span class="line">    &#123;<span class="number">1000000</span>, <span class="number">0.8</span>, <span class="number">0.1</span>, <span class="number">0.1</span>&#125;,</span><br><span class="line">    &#123;<span class="number">100000</span>, <span class="number">0.2</span>, <span class="number">0.1</span>, <span class="number">0.7</span>&#125;,</span><br><span class="line">    &#123;<span class="number">1000000</span>, <span class="number">0.2</span>, <span class="number">0.1</span>, <span class="number">0.7</span>&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h6 id="随机生成数据的范围">2.随机生成数据的范围</h6>
+<p>用随机数生成然后对MAXX取模得到相应范围内的数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXX = <span class="number">8500000</span>;</span><br><span class="line"><span class="keyword">int</span> q = <span class="built_in">rand</span>() % MAXX;</span><br></pre></td></tr></table></figure>
+<h6 id="插入删除查找的比例">3.插入、删除、查找的比例</h6>
+<p>为保证数据更接近真实性，数据生成时首先插入一部分数据，然后再对数据进行删除和查询操作。更可能地模拟真实情况。</p>
+<h6 id="数据生成的效率">4.数据生成的效率</h6>
+<p>数据生成不会陷入死循环。这是由于程序设计时每种参数和数据量都是封闭的。具有循环不变性。</p>
+<h6 id="如何保证删除的数据一定在已经插入的数据中">5.如何保证删除的数据一定在已经插入的数据中</h6>
+<p>用容器储存已经插入的数据，在随机取得删除的数据时，均从容器中取出，取出后同时删除容器中的数据。这里的容器选择的是向量。</p>
+<h2 id="不同数据结构在不同测例下的性能描述及原因分析">不同数据结构在不同测例下的性能描述及原因分析。</h2>
+<h3 id="综合性能评价">1. 综合性能评价</h3>
+<ul>
+<li>面对超大规模数据（百万量级）时
+<ul>
+<li>当查询次数较少时，无论插入、删除的比例如何，红黑树的性能表现均优于AVL树。</li>
+<li>当查询次数比重较大时，无论插入、删除的比例如何，AVL树的性能表现优于红黑树。</li>
+</ul></li>
+<li>面对普通规模大数据（十万量级）时，红黑树和AVL树的表现各有优劣，依据实际数据而定，但总体上与超大规模数据类似。
+<ul>
+<li>当查询次数较少时，红黑树的性能表现优于AVL树。</li>
+<li>当查询次数比重较大时，AVL树的性能表现优于红黑树。</li>
+</ul></li>
+</ul>
+<h3 id="不同测例下性能描述">2. 不同测例下性能描述</h3>
+<table>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 25%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">数据规模</th>
+<th style="text-align: center;">插入:删除:查询</th>
+<th style="text-align: center;">AVL time/s</th>
+<th>RBT Time/s</th>
+<th>AVL 旋转次数 与 树高度</th>
+<th>RBT 旋转次数 与 树黑高度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">100,000</td>
+<td style="text-align: center;">5 : 3 : 2</td>
+<td style="text-align: center;">0.046875</td>
+<td>0.046875</td>
+<td>57666 18</td>
+<td>50018 10</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1,000,000</td>
+<td style="text-align: center;">5 : 3 : 2</td>
+<td style="text-align: center;">0.984375</td>
+<td>0.921875</td>
+<td>562928 21</td>
+<td>485264 12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">100,000</td>
+<td style="text-align: center;">8 : 1 : 1</td>
+<td style="text-align: center;">0.093750</td>
+<td>0.062500</td>
+<td>75718 18</td>
+<td>63358 10</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1,000,000</td>
+<td style="text-align: center;">8 : 1 : 1</td>
+<td style="text-align: center;">1.312500</td>
+<td>1.156250</td>
+<td>752378 23</td>
+<td>629022 12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">100,000</td>
+<td style="text-align: center;">2 : 1 : 7</td>
+<td style="text-align: center;">0.046875</td>
+<td>0.062500</td>
+<td>19126 16</td>
+<td>15856 9</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1,000,000</td>
+<td style="text-align: center;">2 : 1 : 7</td>
+<td style="text-align: center;">0.781250</td>
+<td>1.078125</td>
+<td>216726 20</td>
+<td>184730 11</td>
+</tr>
+</tbody>
+</table>
+<h4 id="从测试数据我们能够得到如下结论与原因分析">从测试数据我们能够得到如下结论与原因分析</h4>
+<ul>
+<li>相同数据情况下，红黑树的旋转次数更少。且旋转比例在1.18左右。这就解释了为什么在查询操作较少的情况下，红黑树的性能表现要优于AVL树。因为在插入和删除的过程中会出现大量的旋转与修正，因而旋转总次数少的数据结构最终性能更好。</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>输入文件</th>
+<th>AVL树旋转总次数</th>
+<th>红黑树旋转总次数</th>
+<th>旋转比例（AVL:RBT）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.in</td>
+<td>57666</td>
+<td>50018</td>
+<td>1.152905</td>
+</tr>
+<tr class="even">
+<td>2.in</td>
+<td>562928</td>
+<td>485264</td>
+<td>1.160045</td>
+</tr>
+<tr class="odd">
+<td>3.in</td>
+<td>75718</td>
+<td>63358</td>
+<td>1.195082</td>
+</tr>
+<tr class="even">
+<td>4.in</td>
+<td>752378</td>
+<td>629022</td>
+<td>1.196108</td>
+</tr>
+<tr class="odd">
+<td>5.in</td>
+<td>19126</td>
+<td>15856</td>
+<td>1.206231</td>
+</tr>
+<tr class="even">
+<td>6.in</td>
+<td>216726</td>
+<td>184730</td>
+<td>1.173204</td>
+</tr>
+<tr class="odd">
+<td>均值</td>
+<td>280757</td>
+<td>238041</td>
+<td>1.180596</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>数据集查询比例较高时，AVL树的性能优于红黑树。这是因为红黑树的树高在数据量大时要高于AVL树。这点从AVL的树高度和红黑树的黑高度可以看出。根据红黑树的结构，红黑树的树高不超过二倍的黑高度。从二倍黑高度来看，平均意义上红黑树的树高要高于AVL树的高度。从适度平衡的角度来看，红黑树对于平衡的要求要低于AVL树，因而导致了红黑树的树高要高于AVL树，使得查找的时间更长。但这样的牺牲也换来了红黑树插入与删除性能的优化。</li>
+</ul>
+<h3 id="综合分析">3. 综合分析</h3>
+<p>综上所述</p>
+<ul>
+<li><p>红黑树以牺牲平衡为代价，换来了动态操作（插入与删除）操作中更少的旋转次数（主要是减少了删除中的旋转次数），同时牺牲了查找操作的效率。</p></li>
+<li><p>红黑树的平均树高高于AVL树。</p></li>
+<li><p>红黑树的综合性能更优。</p></li>
+<li><p>查询较多的数据中，选择AVL树更加合理。</p></li>
+<li><p>AVL树的实现相对红黑树要简单。</p></li>
+</ul>
+<h2 id="附程序输出的结果">【附：程序输出的结果】</h2>
+<blockquote>
+<p>数据文件 1.in AVL Time: 0.046875s 旋转总次数是 57666. 树的最高高度是
+18 RBT Time: 0.046875s 旋转总次数是 50018. 红黑树的最高黑高度是 10</p>
+<p>数据文件 2.in AVL Time: 0.984375s 旋转总次数是 562928. 树的最高高度是
+21 RBT Time: 0.921875s 旋转总次数是 485264. 红黑树的最高黑高度是 12</p>
+<p>数据文件 3.in AVL Time: 0.093750s 旋转总次数是 75718. 树的最高高度是
+18 RBT Time: 0.062500s 旋转总次数是 63358. 红黑树的最高黑高度是 10</p>
+<p>数据文件 4.in AVL Time: 1.312500s 旋转总次数是 752378. 树的最高高度是
+23 RBT Time: 1.156250s 旋转总次数是 629022. 红黑树的最高黑高度是 12</p>
+<p>数据文件 5.in AVL Time: 0.046875s 旋转总次数是 19126. 树的最高高度是
+16 RBT Time: 0.062500s 旋转总次数是 15856. 红黑树的最高黑高度是 9</p>
+<p>数据文件 6.in AVL Time: 0.781250s 旋转总次数是 216726. 树的最高高度是
+20 RBT Time: 1.078125s 旋转总次数是 184730. 红黑树的最高黑高度是 11</p>
+</blockquote>
+
       
     </div>
 
