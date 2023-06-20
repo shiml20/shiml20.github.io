@@ -177,7 +177,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-06-21 00:45:15 / Modified: 01:11:06" itemprop="dateCreated datePublished" datetime="2023-06-21T00:45:15+08:00">2023-06-21</time>
+              <time title="Created: 2023-06-21 00:45:15 / Modified: 01:11:33" itemprop="dateCreated datePublished" datetime="2023-06-21T00:45:15+08:00">2023-06-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -204,7 +204,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="强化学习数学基础">强化学习数学基础</h1>
+          <span id="more"></span>
+<h1 id="强化学习数学基础">强化学习数学基础</h1>
 <table>
 <colgroup>
 <col style="width: 33%">
@@ -284,14 +285,311 @@ n\times m}\]</span></td>
 <!--
 $\textcolor{red}{aaa}$
 -->
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/21/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91Reinforcement%20Learning/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<h2 id="状态">状态</h2>
+<h2 id="状态转移矩阵">状态转移矩阵</h2>
+<p><span class="math display">\[
+p_{ss^\prime}=P(S_{t+1}=s^\prime|S_t=s)
+\]</span></p>
+<h2 id="动作状态转移矩阵">动作状态转移矩阵</h2>
+<p><span class="math display">\[
+p^a_{ss^\prime}=P(S_{t+1}=s^\prime|S_t=s,A_t=a)
+\]</span></p>
+<h2 id="累计回报">累计回报</h2>
+<p><span class="math display">\[
+G_t = R_{t+1} + \gamma R_{t+2} + ...+=\sum_{k=0}^\infty
+\gamma^kR_{t+k+1}
+\]</span></p>
+<h2 id="状态期望回报">状态期望回报</h2>
+<p>仅纳入当前值，对状态进行量化，状态期望回报是回报在当前状态条件下的期望值。
+<span class="math display">\[
+r_s=E[R_{t+1}|S_{t}=s]=\sum_{r\in \textbf{R}}rp(r|S_{t}=s)
+\]</span></p>
+<h2 id="状态价值函数">状态价值函数</h2>
+<p>纳入当前值和未来可能的值，对状态进行量化，状态价值函数是当前状态条件下累积回报的期望值。
+<span class="math display">\[
+\begin{aligned}
+v(s) &amp; =E[G_t|S_t=s] \\
+&amp; = E[R_{t+1} + \gamma G_{t+1}|S_t=s] \\
+&amp; = E[R_{t+1} + \gamma G_{t+1}|S_t=s] \\
+&amp; = E[R_{t+1} |S_t=s] + \gamma E[G_{t+1}|S_t=s] \\
+&amp; = E[R_{t+1} |S_t=s] + \gamma E[v(S_{t+1})|S_t=s] \\
+&amp; = r_s + \gamma \sum_{s^\prime\in
+\textbf{S}}p_{ss^\prime}v(s^\prime)
+\end{aligned}
+\]</span></p>
+<p>其中第二步的推导如下列公式所示 <span class="math display">\[
+\begin{aligned}
+E[G_{t+1}|S_t=s]
+&amp; =
+E_{S_{t+1}|S_t=s}\{E_{G_{t+1}|S_{t+1}}[[G_{t+1}|S_{t+1}]|S_t=s]\} \\
+&amp; = E_{S_{t+1}|S_t=s}\{v(S_{t+1})|S_t=s\} \\
+&amp; = \sum_{s^\prime\in \textbf{S}}p_{ss^\prime}v(s^\prime)
+\end{aligned}
+\]</span> 对于多个状态而言 <span class="math display">\[
+\begin{aligned}
+v(s_1) &amp; = r_{s_1} + \gamma \sum_{s^\prime\in
+\textbf{S}}p_{s_1s^\prime}v(s^\prime) \\
+v(s_2) &amp; = r_{s_2} + \gamma \sum_{s^\prime\in
+\textbf{S}}p_{s_2s^\prime}v(s^\prime) \\
+... \\
+v(s_3) &amp; = r_{s_3} + \gamma \sum_{s^\prime\in
+\textbf{S}}p_{s_3s^\prime}v(s^\prime) \\
+\\
+&amp;\Rightarrow  \textbf{v}= \textbf{r}+\gamma \textbf{P} \textbf{v} \\
+&amp;\Rightarrow  \textbf{v}=( \textbf{I}-\gamma \textbf{P})^{-1}
+\textbf{r} \\
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p>模型已知 ( <strong>P</strong> 已知)</p>
+<ul>
+<li><p>小规模问题，直接解方程求解</p></li>
+<li><p>大规模问题，用迭代方法求解</p></li>
+</ul></li>
+</ul>
+<p>​ 动态规划</p>
+<ul>
+<li><p>模型未知</p>
+<ul>
+<li><p>蒙特卡洛</p></li>
+<li><p>时序差分</p></li>
+</ul></li>
+</ul>
+<h2 id="动作">动作</h2>
+<h2 id="行动期望回报">行动期望回报</h2>
+<p>执行某一个动作后可以获得的奖励 <span class="math display">\[
+r^a_s=E[R_{t+1}|S_t=s,A_t=a]
+\]</span></p>
+<p>策略的数学表示</p>
+<p>确定性策略 <span class="math display">\[
+\pi(s)=a
+\]</span> 非确定性策略 <span class="math display">\[
+\pi(a\ |\ s)=P(A_t=a|S_t=s)
+\]</span> 策略<span class="math inline">\(\pi\)</span>和状态转移矩阵的通过全概率公式关联
+<span class="math display">\[
+\begin{aligned}
+p^\pi_{ss^\prime} &amp;= P(S_{t+1} = s^\prime | S_t=s) \\
+&amp;= \sum_{a\in \textbf{A}} P(S_{t+1} = s^\prime,A_t=a|S_t=s) \\
+&amp;= \sum_{a\in \textbf{A}} P(A_t=a|S_t=s)P(S_{t+1} =
+s^\prime|A_t=a,S_t=s) \\
+&amp;= \sum_{a\in \textbf{A}} \pi(a|s)p^a_{ss^\prime} \\
+\end{aligned}
+\]</span> 同时策略<span class="math inline">\(\pi\)</span>下状态期望回报
+<span class="math display">\[
+\begin{aligned}
+r^\pi_{s} = \sum_{a\in \textbf{A}} \pi(a|s)r^a_s \\
+\end{aligned}
+\]</span></p>
+<h2 id="行动价值函数">行动价值函数</h2>
+<p>状态价值函数(贝尔曼方程)如下 <span class="math display">\[
+\begin{aligned}
+v(s) &amp; =E[G_t|S_t=s] \\
+&amp; = E[R_{t+1} + \gamma G_{t+1}|S_t=s] \\
+&amp; = E[R_{t+1} + \gamma G_{t+1}|S_t=s] \\
+&amp; = E[R_{t+1} |S_t=s] + \gamma E[G_{t+1}|S_t=s] \\
+&amp; = r_s + \gamma \sum_{s^\prime\in
+\textbf{B}}p_{ss^\prime}v(s^\prime)
+\end{aligned}
+\]</span>
+纳入当前价值和未来价值对行动进行量化，得到行动的量化值。行动价值函数定义如下
+（行动价值由后续状态价值的期望计算） <span class="math display">\[
+\begin{aligned}
+q_\pi(s,a)&amp; = E[G_t|S_t=s,A_t=a] \\
+&amp; = r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}v_\pi(s^\prime)
+\end{aligned}
+\]</span></p>
+<p>可以根据行动价值函数与策略<span class="math inline">\(\pi\)</span>计算状态价值函数（状态价值是同时刻行动价值的期望）
+<span class="math display">\[
+\begin{aligned}
+v_\pi(s)&amp; = E[G_t|S_t=s] \\
+&amp; = \sum_{g}gp(g|S_t=s) \\
+&amp; = \sum_{g}g\sum_{a\in \textbf{A}}p(g,A_t=a|S_t=s) \\
+&amp; = \sum_{g}g\sum_{a\in \textbf{A}}p(g|A_t=a|S_t=s)p(A_t=a|S_t=s) \\
+&amp; = \sum_{g}g\sum_{a\in \textbf{A}}p(g|A_t=a,S_t=s)p(A_t=a|S_t=s) \\
+&amp; = \sum_{g}g\sum_{a\in \textbf{A}}\pi(a|s)p(g|A_t=a,S_t=s) \\
+&amp; = \sum_{a\in \textbf{A}}\pi(a|s)\sum_{g}gp(g|A_t=a,S_t=s) \\
+&amp; = \sum_{a\in \textbf{A}}\pi(a|s)q_\pi(s,a) \\
+\end{aligned}
+\]</span></p>
+<p>行动价值函数：</p>
+<ul>
+<li>状态为<span class="math inline">\(s\)</span>时取动作<span class="math inline">\(a\)</span>后续按照策略<span class="math inline">\(\pi\)</span>来进行的期望累计回报</li>
+</ul>
+<p>状态价值和行动价值之间的联系：</p>
+<ul>
+<li><p>状态价值是同时刻行动价值的期望</p></li>
+<li><p>行动价值由后续状态价值的期望计算</p></li>
+</ul>
+<h2 id="优势函数-advantage">优势函数 advantage</h2>
+<p>行动价值函数和状态价值函数的差值 <span class="math display">\[
+A_\pi(s,a)=Q_\pi(s,a)-V_\pi(s)
+\]</span></p>
+<h2 id="最优性">最优性</h2>
+<p>设最优策略为<span class="math inline">\(\pi_*\)</span>满足以下条件</p>
+<p><span class="math inline">\(\pi_*\ge \pi^\prime:v_{\pi_*}(s)\ge
+v_{\pi^\prime}(s),\forall s, \forall \pi^\prime\)</span></p>
+<p>最优策略下状态价值取得最大值</p>
+<ul>
+<li>最优状态价值即最优策略下的行动价值</li>
+</ul>
+<p><span class="math display">\[
+v_{*}(s)=\underset{\pi}{\max}v_{\pi}(s)=v_{\pi_*}(s)
+\]</span></p>
+<ul>
+<li>最优行动价值即为最优策略下的行动价值。</li>
+</ul>
+<p><span class="math display">\[
+q_{*}(s,a)=\underset{\pi}{\max}q_{\pi}(s, a)=q_{\pi_*}(s,a)
+\]</span></p>
+<p>推导原理：行动价值由后续状态价值的期望计算 <span class="math display">\[
+q_\pi(s,a)=r_s^a+\gamma \sum_{s^\prime\in \textbf{S}}
+p^a_{ss^\prime}v_\pi(s^\prime)
+\]</span> 故取最大值时即策略取最优策略。</p>
+<h2 id="贝尔曼期望方程">贝尔曼期望方程</h2>
+<p><span class="math display">\[
+v_\pi(s)=\sum_{a\in \textbf{A}}\pi(a|s)q_{\pi}(s,a)
+\]</span></p>
+<p><span class="math display">\[
+q_\pi(s,a)=r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}v_\pi(s^\prime)
+\]</span></p>
+<p>后式代入前式得状态价值的贝尔曼期望方程 <span class="math display">\[
+v_\pi(s)=\sum_{a\in \textbf{A}}\pi(a|s)\left \{r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}v_\pi(s^\prime)\right
+\}
+\]</span> 前式代入后式得状态价值的贝尔曼期望方程 <span class="math display">\[
+q_\pi(s,a)=r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p_{ss^\prime}\left\{ \sum_{a^\prime
+\in  \textbf{A}}\pi(a^\prime|s^\prime)q_\pi(s^\prime,a^\prime) \right\}
+\]</span></p>
+<h2 id="贝尔曼最优方程">贝尔曼最优方程</h2>
+<p>状态价值贝尔曼最优方程 <span class="math display">\[
+v_*(s)=\underset{a\in \textbf{A}}{\operatorname{max}}q_*(s,a)
+\]</span></p>
+<p><span class="math display">\[
+q_*(s,a)=r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}v_*(s^\prime)
+\]</span></p>
+<p><span class="math display">\[
+v_*(s) = r_s^a +
+\gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}v_*(s^\prime)
+\]</span></p>
+<p><span class="math display">\[
+q_*(s,a) = r_s^a + \gamma\sum_{s^\prime\in  \textbf{S}}p^a_{ss^\prime}
+\underset{a^\prime\in
+\textbf{A}}{\operatorname{max}}q_*(s^\prime,a^\prime)
+\]</span></p>
+<h1 id="常见方法">常见方法</h1>
+<h1 id="预测问题计算价值函数评价给定策略">预测问题：计算价值函数，评价给定策略</h1>
+<h2 id="基于价值函数">基于价值函数</h2>
+<h2 id="基于状态转移模型model-based">基于状态转移模型（Model-based）</h2>
+<ul>
+<li>线性方程</li>
+<li>动态规划</li>
+</ul>
+<h2 id="不基于状态转移模型model-free">不基于状态转移模型（Model-free）</h2>
+<ul>
+<li>蒙特卡洛预测</li>
+<li>时序差分预测</li>
+</ul>
+<h2 id="近似方法">近似方法</h2>
+<ul>
+<li>线性回归</li>
+<li>深度学习</li>
+</ul>
+<h2 id="基于策略模型">基于策略模型</h2>
+<h1 id="控制问题优化价值函数获得最优策略">控制问题：优化价值函数，获得最优策略</h1>
+<h2 id="基于价值函数-1">基于价值函数</h2>
+<h2 id="基于状态转移模型model-based-1">基于状态转移模型（Model-based）</h2>
+<ul>
+<li>策略迭代</li>
+<li>价值迭代</li>
+</ul>
+<h2 id="不基于状态转移模型model-free-1">不基于状态转移模型（Model-free）</h2>
+<ul>
+<li>蒙特卡洛控制</li>
+<li>时序差分控制：SARSA, Q-learning</li>
+</ul>
+<h2 id="近似方法-1">近似方法</h2>
+<ul>
+<li>线性回归</li>
+<li>深度学习：DQN</li>
+</ul>
+<h2 id="基于策略模型-1">基于策略模型</h2>
+<h1 id="如何求解最优策略">如何求解最优策略？</h1>
+<p>策略改进可以提升状态价值</p>
+<p>基于原来的策略<span class="math inline">\(\pi\)</span>产生新策略<span class="math inline">\(\pi^\prime\)</span></p>
+<h2 id="线性方程">1. 线性方程</h2>
+<p><span class="math display">\[
+\textbf{v}_{\pi}=
+\textbf{r}_s^\pi+\gamma  \textbf{P}^\pi  \textbf{v}_\pi
+\]</span></p>
+<p><span class="math display">\[
+\textbf{v}_\pi = ( \textbf{I}-\gamma \textbf{P}^\pi)^{-1}
+\textbf{r}_s^\pi
+\]</span></p>
+<h2 id="动态规划">2. 动态规划</h2>
+<p><strong>Model
+Base：</strong>值迭代和策略迭代，model-base具有前提条件奖励R,
+状态转移矩阵P ，即环境模型已知【离线策略求解】</p>
+<h3 id="策略评估">策略评估</h3>
+<p>给定策略<span class="math inline">\(\pi\)</span>，策略评估用于计算状态价值函数： <span class="math display">\[
+v_{t+1}(s)= \mathbb{E}[r+\gamma v_t(s^\prime)|S_t=s] =
+\sum_{a}\pi(a|s)\left\{ \sum_{s^\prime,r}p(s^\prime,r|s,a)(r+\gamma
+v_t(s^\prime)) \right\}
+\]</span></p>
+<h3 id="策略改进">策略改进</h3>
+<p>基于价值函数，策略改进，通过更贪婪的行为生成更好的策略<span class="math inline">\(\pi^\prime \ge \pi\)</span> <span class="math display">\[
+q_\pi(s,a)=\mathbb{E}[R_{t+1}+\gamma v_\pi(S_{t+1})|S_t=s,A_t=a]
+=\sum_{s^\prime,r}p(s^\prime,r|s,a)(r+\gamma v(s^\prime))
+\]</span></p>
+<h3 id="策略迭代-generalized-policy-iteration-gpi">策略迭代 (Generalized
+Policy Iteration, GPI)</h3>
+<p><span class="math display">\[
+\pi_0 \xrightarrow{\text{evaluation}}
+V_{\pi_0}\xrightarrow{\text{improve}}\pi_1\xrightarrow{\text{evaluation}}V_{\pi_1}\xrightarrow{\text{improve}}...\xrightarrow{\text{improve}}\pi_*
+\xrightarrow{\text{evaluation}} V_{*}
+\]</span></p>
+<p>在GPI中，价值函数通过重复地迭代来不断接近当前策略的实际值。与此同时，策略也在此过程中不断接近最优策略。使用贪婪方式生成
+<span class="math display">\[
+\pi^\prime(s)=\underset{a\in \textbf{A}}{\text{argmax}}\ Q_\pi(s,a)
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+q_\pi(s,\pi^\prime(s)) &amp; = q_\pi(s, \underset{a\in
+\textbf{A}}{\text{argmax}\ q_\pi(s,a)}) \\
+&amp;=\underset{a\in \textbf{A}}{\max}q_\pi(s,a)\ge
+q_\pi(s,\pi(s))=v_\pi(s)
+\end{aligned}
+\]</span></p>
+<p>每次循环可以得到一个新的<span class="math inline">\(q_\pi(s,\pi(s))=v_\pi(s)\)</span>下轮的时候自然会把<span class="math inline">\(v_{\pi^\prime}\)</span>提升</p>
+<blockquote>
+<p>价值迭代</p>
+</blockquote>
+<h2 id="蒙特卡洛方法-monte-carlo-mc">3. 蒙特卡洛方法 Monte-Carlo MC</h2>
+<p>根据弱大数定理使用均值对数学期望进行近似。 <span class="math display">\[
+v_\pi(s)=\mathbb{E}[G_t|S_t=s]\approx\frac{1}{n}\sum_{i=1}^nG_i
+\]</span> 近似计算状态价值的基本算法是根据待评价的策略产生一个观测片段
+<span class="math display">\[
+S_1,A_1,R_2,S_2,A_2...S_T,A_T,R_{T+1}
+\]</span> 此时视<span class="math inline">\(R_{T+1}\)</span>为终止状态，则累计回报是 <span class="math display">\[
+G_t^i=R_{t+1}+\gamma R_{t+2}+...+\gamma^{T-t}R_{T+1}
+\]</span> 重复n次计算，然后对凭此计算的结果取平均值得到状态价值的估计
+<span class="math display">\[
+V(S_t)=\frac{1}{n}\sum_{i=1}^nG_t^i
+\]</span>
+均值的计算可以采用递增式的计算方式，这种计算方式可以减少空间占用 <span class="math display">\[
+\overline{X}_k = \overline{X}_{k-1}+\frac{1}{k}(X_k-\overline{X}_{k-1})
+\]</span> 因此增量式蒙特卡洛预测更新如下 <span class="math display">\[
+V(S_t) \leftarrow V(S_t) + \frac{1}{k}(G_t-V(S_t))
+\]</span> 也可以采用定步长更新的方式，使用误差值<span class="math inline">\(G_t=V(S_t)\)</span>修正<span class="math inline">\(V(S_t)\)</span> <span class="math display">\[
+V(S_t) \leftarrow V(S_t) + \alpha(G_t-V(S_t))
+\]</span></p>
+<p>这里区分两种计算方法：首次访问蒙特卡洛，以及每次访问蒙特卡洛。前者是指当且仅当
+<em>t</em> 时刻所处的状态等于待评价的状态
+<em>s</em>，且之前没有出现过该状态时，才将仿真结果纳入最终的平均值计算。后者是指只要观测片段中出现待估计的目标状态，不论是不是出现在最开始，仿真结果都用来计算该状态的平均值。在操作上，每次访问算法不检查之前是不是出现过待评价状态。</p>
+
       
     </div>
 
@@ -341,7 +639,7 @@ $\textcolor{red}{aaa}$
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-06-21 00:46:14" itemprop="dateModified" datetime="2023-06-21T00:46:14+08:00">2023-06-21</time>
+                <time title="Modified: 2023-06-21 01:11:41" itemprop="dateModified" datetime="2023-06-21T01:11:41+08:00">2023-06-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -369,10 +667,6 @@ $\textcolor{red}{aaa}$
 
       
           <h2 id="数据结构的实现过程及复杂度分析">数据结构的实现过程及复杂度分析</h2>
-<p>AVL树和红黑树都是二叉搜索树的一种，二叉搜索树是二叉树的一种，二叉树是树的一种，树由结点组成，每个结点由父亲和孩子结点。</p>
-<p><img src="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601170126296.png" alt="image-20220601170126296" style="zoom:50%;"></p>
-<h3 id="实现思路">实现思路</h3>
-<p>因而实现时可以从结点出发，设计二叉树（BT）的结构，进而设计二叉搜索树（BST）的结构，进而设计二叉搜索树（BBST）的结构。然后从二叉搜素树派生出AVL树和红黑树。以下代码简单展示了从结点出发各个父类与派生类的实现。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/#more" rel="contents">
