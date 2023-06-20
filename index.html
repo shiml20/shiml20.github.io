@@ -22,12 +22,12 @@
 
   <meta name="description" content="Just record something randomly">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Shiml20">
+<meta property="og:title" content="shiml20">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Shiml20">
+<meta property="og:site_name" content="shiml20">
 <meta property="og:description" content="Just record something randomly">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="Stephen Serrylei">
+<meta property="article:author" content="Minglei, Shi">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/">
@@ -43,7 +43,7 @@
   };
 </script>
 
-  <title>Shiml20</title>
+  <title>shiml20</title>
   
 
 
@@ -98,7 +98,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Shiml20</h1>
+      <h1 class="site-title">shiml20</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">THU TIME</p>
@@ -152,16 +152,197 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/21/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91Reinforcement%20Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stephen Serrylei">
+      <meta itemprop="name" content="Minglei, Shi">
       <meta itemprop="description" content="Just record something randomly">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shiml20">
+      <meta itemprop="name" content="shiml20">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/21/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91Reinforcement%20Learning/" class="post-title-link" itemprop="url">强化学习数学基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-06-21 00:45:15 / Modified: 00:47:00" itemprop="dateCreated datePublished" datetime="2023-06-21T00:45:15+08:00">2023-06-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="强化学习数学基础">强化学习数学基础</h1>
+<table>
+<colgroup>
+<col style="width: 31%">
+<col style="width: 5%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>名词</th>
+<th>解释</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>环境 Environment</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>智能体 Agent</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>动作 Action</td>
+<td></td>
+<td><span class="math inline">\(\bold{A_t}\)</span></td>
+</tr>
+<tr class="even">
+<td>回报 Reward</td>
+<td></td>
+<td><span class="math inline">\(\bold{R_t}\)</span></td>
+</tr>
+<tr class="odd">
+<td>状态 State</td>
+<td></td>
+<td><span class="math inline">\(\bold{S_t}=\{s_1, s_2,
+...s_n\}\)</span></td>
+</tr>
+<tr class="even">
+<td>优势 Advantage</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>策略 Policy</td>
+<td></td>
+<td><span class="math inline">\(\mathbb{\pi}\)</span></td>
+</tr>
+<tr class="even">
+<td>状态期望回报</td>
+<td></td>
+<td><span class="math inline">\(\bold{r}=(r_1,r_2,...r_n)\)</span></td>
+</tr>
+<tr class="odd">
+<td>策略<span class="math inline">\(\pi\)</span>下状态期望回报</td>
+<td></td>
+<td><span class="math inline">\(\bold{r^\pi}=(r^\pi_1,r^\pi_2,...r^\pi_n)\)</span></td>
+</tr>
+<tr class="even">
+<td>行动期望回报</td>
+<td></td>
+<td><span class="math inline">\(\bold{R}=(r^a_s)_{n\times
+m}\)</span></td>
+</tr>
+<tr class="odd">
+<td>折现因子</td>
+<td></td>
+<td><span class="math inline">\(\gamma\)</span></td>
+</tr>
+<tr class="even">
+<td>状态转移矩阵（不带动作）</td>
+<td></td>
+<td><span class="math inline">\(\bold{P}=(p_{ss^\prime})_{n\times
+n}\)</span></td>
+</tr>
+<tr class="odd">
+<td>策略<span class="math inline">\(\pi\)</span>下状态转移矩阵</td>
+<td></td>
+<td><span class="math inline">\(\bold{P^\pi}=(p^\pi_{ss^\prime})_{n\times
+n}\)</span></td>
+</tr>
+<tr class="even">
+<td>状态转移矩阵（带动作）</td>
+<td></td>
+<td><span class="math inline">\(\bold{P}=(p^a_{ss^\prime})_{n\times
+n\times m}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\textcolor{red}{aaa}\)</span></p>
+<h2 id="状态">状态</h2>
+<h2 id="状态转移矩阵">状态转移矩阵</h2>
+<p><span class="math display">\[
+p_{ss^\prime}=P(S_{t+1}=s^\prime|S_t=s)
+\]</span></p>
+<h2 id="动作状态转移矩阵">动作状态转移矩阵</h2>
+<p><span class="math display">\[
+p^a_{ss^\prime}=P(S_{t+1}=s^\prime|S_t=s,A_t=a)
+\]</span></p>
+<h2 id="累计回报">累计回报</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/06/21/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91Reinforcement%20Learning/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Minglei, Shi">
+      <meta itemprop="description" content="Just record something randomly">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shiml20">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -183,7 +364,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-06-20 17:37:33" itemprop="dateModified" datetime="2023-06-20T17:37:33+08:00">2023-06-20</time>
+                <time title="Modified: 2023-06-21 00:46:14" itemprop="dateModified" datetime="2023-06-21T00:46:14+08:00">2023-06-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -191,11 +372,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-structure-algorithm/" itemprop="url" rel="index"><span itemprop="name">data structure & algorithm</span></a>
+                  <a href="/categories/Data-Structure-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Data Structure & Algorithm</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/data-structure-algorithm/tech/" itemprop="url" rel="index"><span itemprop="name">tech</span></a>
+                  <a href="/categories/Data-Structure-Algorithm/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
                 </span>
             </span>
 
@@ -213,7 +394,7 @@
           <h2 id="数据结构的实现过程及复杂度分析">数据结构的实现过程及复杂度分析</h2>
 <p>AVL树和红黑树都是二叉搜索树的一种，二叉搜索树是二叉树的一种，二叉树是树的一种，树由结点组成，每个结点由父亲和孩子结点。</p>
 <p><img src="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601170126296.png" alt="image-20220601170126296" style="zoom:50%;"></p>
-<h6 id="实现思路">实现思路</h6>
+<h3 id="实现思路">实现思路</h3>
 <p>因而实现时可以从结点出发，设计二叉树（BT）的结构，进而设计二叉搜索树（BST）的结构，进而设计二叉搜索树（BBST）的结构。然后从二叉搜素树派生出AVL树和红黑树。以下代码简单展示了从结点出发各个父类与派生类的实现。</p>
           <!--noindex-->
             <div class="post-button">
@@ -295,7 +476,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Stephen Serrylei</p>
+  <p class="site-author-name" itemprop="name">Minglei, Shi</p>
   <div class="site-description" itemprop="description">Just record something randomly</div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -303,13 +484,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
   </nav>
@@ -340,7 +521,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Stephen Serrylei</span>
+  <span class="author" itemprop="copyrightHolder">Minglei, Shi</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
