@@ -152,7 +152,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/20/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -166,7 +166,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/08/20/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">AVL树和RedBlack树的实现与性能分析</a>
         </h2>
 
         <div class="post-meta">
@@ -175,9 +175,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-08-20 23:47:25 / Modified: 23:48:31" itemprop="dateCreated datePublished" datetime="2022-08-20T23:47:25+08:00">2022-08-20</time>
+              <time title="Created: 2022-06-01 18:32:02" itemprop="dateCreated datePublished" datetime="2022-06-01T18:32:02+08:00">2022-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-20 23:56:09" itemprop="dateModified" datetime="2022-08-20T23:56:09+08:00">2022-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-structure-algorithm/" itemprop="url" rel="index"><span itemprop="name">data structure & algorithm</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/data-structure-algorithm/tech/" itemprop="url" rel="index"><span itemprop="name">tech</span></a>
+                </span>
             </span>
 
           
@@ -191,10 +210,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="avl树和redblack树的实现与性能分析">AVL树和RedBlack树的实现与性能分析</h1>
-<h2 id="数据结构的实现过程及复杂度分析">数据结构的实现过程及复杂度分析</h2>
+          <h2 id="数据结构的实现过程及复杂度分析">数据结构的实现过程及复杂度分析</h2>
 <p>AVL树和红黑树都是二叉搜索树的一种，二叉搜索树是二叉树的一种，二叉树是树的一种，树由结点组成，每个结点由父亲和孩子结点。</p>
-<p><img src="/2022/08/20/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601170126296.png" alt="image-20220601170126296" style="zoom:50%;"></p>
+<p><img src="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601170126296.png" alt="image-20220601170126296" style="zoom:50%;"></p>
 <h6 id="实现思路">实现思路</h6>
 <p>因而实现时可以从结点出发，设计二叉树（BT）的结构，进而设计二叉搜索树（BST）的结构，进而设计二叉搜索树（BBST）的结构。然后从二叉搜素树派生出AVL树和红黑树。以下代码简单展示了从结点出发各个父类与派生类的实现。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 结点的定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Node* parent; Node* lc;Node* rc;</span><br><span class="line">    <span class="keyword">int</span> height;</span><br><span class="line">    RBcolor color;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BT</span> &#123;</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">int</span> _size; Node* _root;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">updataHeight</span><span class="params">(Node* x)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updataHeightAbove</span><span class="params">(Node* x)</span></span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">BT</span>() &#123; _size = <span class="number">0</span>; _root = <span class="literal">NULL</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BST</span> :</span> <span class="keyword">public</span> BT &#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    Node* _hot; <span class="comment">// 搜索时命中节点的父亲</span></span><br><span class="line">    <span class="function">Node* <span class="title">restruct</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">        Node* a, Node* b, Node* c,</span></span></span><br><span class="line"><span class="params"><span class="function">        Node* T1, Node* T2, Node* T3, Node* T4)</span></span>;</span><br><span class="line">    <span class="function">Node* <span class="title">rotatePG</span><span class="params">(Node* x)</span></span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node*&amp; <span class="title">search</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function">Node* <span class="title">insert</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AVL</span> :</span> <span class="keyword">public</span> BST &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">insert</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">avl_search</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">showheight</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> _root ? _root-&gt;height : <span class="number">0</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RBT</span> :</span> <span class="keyword">public</span> BST &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">insert</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rb_search</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">showheight</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> _root ? _root-&gt;height : <span class="number">0</span>; &#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">solveRR</span><span class="params">(Node* x)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">solveBB</span><span class="params">(Node* r)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">updataHeight</span><span class="params">(Node* x)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -204,9 +222,9 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> h(x) ((x) ? (x)-&gt;height : -1) <span class="comment">// 除红黑树外的BST节点高度</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> H(x) ((x) ? (x)-&gt;height : 0) <span class="comment">// 红黑树的节点黑高度</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> factor(x)  (h(x-&gt;rc) - h(x-&gt;lc))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> AVLbalanced(x)  ((factor(x) &gt; -2) &amp;&amp; (factor(x) &lt; 2))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RBbalacned(x) ( \</span></span><br><span class="line"><span class="meta">    (H(l(x)) == H(r(x))) &amp;&amp; \</span></span><br><span class="line"><span class="meta">    (H(x) == (isred(x) ? H(l(x)) : H(l(x)) + 1) )\</span></span><br><span class="line"><span class="meta">)</span></span><br></pre></td></tr></table></figure>
 <h6 id="渐进平衡在动态操作中通用旋转方案如下">渐进平衡在动态操作中通用旋转方案如下</h6>
 <p>主要是"3-4"重构函数和旋转函数（下图源于维基百科）</p>
-<p><img src="/2022/08/20/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601174538405.png" alt="image-20220601174538405" style="zoom:50%;"></p>
+<p><img src="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601174538405.png" alt="image-20220601174538405" style="zoom:50%;"></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node* <span class="title">BST::restruct</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    Node* a, Node* b, Node* c,</span></span></span><br><span class="line"><span class="params"><span class="function">    Node* T1, Node* T2, Node* T3, Node* T4)</span></span></span><br><span class="line"><span class="function">Node* <span class="title">BST::rotatePG</span><span class="params">(Node* x)</span> </span></span><br></pre></td></tr></table></figure>
-<p><img src="/2022/08/20/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601171526607.png" alt="image-20220601171526607" style="zoom:33%;"></p>
+<p><img src="/2022/06/01/%E3%80%90%E6%8A%80%E6%9C%AF%E3%80%91AVL&RBT%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90/image-20220601171526607.png" alt="image-20220601171526607" style="zoom:33%;"></p>
 <h6 id="扩充语义的搜索">扩充语义的搜索</h6>
 <p>AVL和红黑树扩充语义搜索都是相同的。按照常规搜索进行寻找，增加ans作为判断，记录沿途不超过搜索值的最大值。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">AVL::avl_search</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!_root) &#123; <span class="keyword">return</span> <span class="number">-1</span>; &#125;</span><br><span class="line">    Node* tmp = _root;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        Node* v = tmp;</span><br><span class="line">        <span class="keyword">if</span> (e &lt; tmp-&gt;data) &#123;</span><br><span class="line">            v = tmp-&gt;lc;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, tmp-&gt;data);</span><br><span class="line">            v = tmp-&gt;rc;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!v) <span class="keyword">return</span> ans;</span><br><span class="line">        tmp = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -517,439 +535,6 @@ x\le8,500,000\)</span>.</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/06/22/1_%E8%90%BD%E8%8A%B1%E6%95%85%E4%BA%BA%E5%8E%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stephen Serrylei">
-      <meta itemprop="description" content="Just record something randomly">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Silence">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/06/22/1_%E8%90%BD%E8%8A%B1%E6%95%85%E4%BA%BA%E5%8E%BB/" class="post-title-link" itemprop="url">落花故人去</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-06-22 21:43:07" itemprop="dateCreated datePublished" datetime="2017-06-22T21:43:07+08:00">2017-06-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-16 00:18:04" itemprop="dateModified" datetime="2022-04-16T00:18:04+08:00">2022-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/school/" itemprop="url" rel="index"><span itemprop="name">school</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/school/best-friend/" itemprop="url" rel="index"><span itemprop="name">best_friend</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>　　繁花盛开时，人们驻足欣赏，久久不愿离去；叶落花谢时，人们兴尽而返，为花的前世所惋惜。殊不知，花落时，才是最美的一刻——它是一种新生。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/06/22/1_%E8%90%BD%E8%8A%B1%E6%95%85%E4%BA%BA%E5%8E%BB/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/07/14/2_%E6%B8%85%E9%A3%8E%E4%B8%80%E5%B9%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stephen Serrylei">
-      <meta itemprop="description" content="Just record something randomly">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Silence">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/07/14/2_%E6%B8%85%E9%A3%8E%E4%B8%80%E5%B9%B4/" class="post-title-link" itemprop="url">清风一年</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-07-14 20:36:36" itemprop="dateCreated datePublished" datetime="2016-07-14T20:36:36+08:00">2016-07-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-16 09:55:01" itemprop="dateModified" datetime="2022-04-16T09:55:01+08:00">2022-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/school/" itemprop="url" rel="index"><span itemprop="name">school</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/school/teacher/" itemprop="url" rel="index"><span itemprop="name">teacher</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>​ 多年以后，当我们再次想起他，该是怎样的心情。　——题记</p>
-<p>　　冬末春初，开学时候的育才是在黑暗里的，过着过着到了夏天，那是在燥热昏困中的，下半学年，那是属于试卷的海洋。如此如此，学生们急需一阵清风，亦或叫做春风冬风，轻拂面庞，一切烦心化三分。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2016/07/14/2_%E6%B8%85%E9%A3%8E%E4%B8%80%E5%B9%B4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/05/01/5_%E6%BC%86%E9%BB%91%E7%9A%84%E7%88%B1%EF%BC%8C%E9%9D%99%E8%8B%A5%E5%85%89%E6%98%8E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stephen Serrylei">
-      <meta itemprop="description" content="Just record something randomly">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Silence">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/05/01/5_%E6%BC%86%E9%BB%91%E7%9A%84%E7%88%B1%EF%BC%8C%E9%9D%99%E8%8B%A5%E5%85%89%E6%98%8E/" class="post-title-link" itemprop="url">漆黑的爱，静若光明</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-05-01 22:20:06" itemprop="dateCreated datePublished" datetime="2016-05-01T22:20:06+08:00">2016-05-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-19 18:48:09" itemprop="dateModified" datetime="2022-04-19T18:48:09+08:00">2022-04-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/school/" itemprop="url" rel="index"><span itemprop="name">school</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/school/teen/" itemprop="url" rel="index"><span itemprop="name">teen</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>​</p>
-<p>​ 夜深人静，万籁俱寂，星空包围大地，微风吹拂绿树。</p>
-<p>　　大海无边的身影，有着无边的空虚。天空漆黑深邃，安静地凝视伤心的大海。</p>
-<p>　　波涛奏起一曲曲悠扬的乐章，妙曼清风舞动一支支华尔兹。乐章它叩击大海心脏，让它空灵，舞蹈绚丽，让它失意。</p>
-<p>　　无边的身影，无边的惆怅。</p>
-<p>　　天空又洒下安慰的泪水，大海不知是泪，所以笑着感谢。</p>
-<p>　　大地微微轻语，让大海开心。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2016/05/01/5_%E6%BC%86%E9%BB%91%E7%9A%84%E7%88%B1%EF%BC%8C%E9%9D%99%E8%8B%A5%E5%85%89%E6%98%8E/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/04/23/3_%E6%98%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stephen Serrylei">
-      <meta itemprop="description" content="Just record something randomly">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Silence">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/04/23/3_%E6%98%A5/" class="post-title-link" itemprop="url">春</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-04-23 22:51:43" itemprop="dateCreated datePublished" datetime="2016-04-23T22:51:43+08:00">2016-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-19 17:47:10" itemprop="dateModified" datetime="2022-04-19T17:47:10+08:00">2022-04-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/school/" itemprop="url" rel="index"><span itemprop="name">school</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/school/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>​
-最近我与时间争斗，有输有赢，这次我输了，我不甘地出了屋子，却惊奇发现冬已无踪影——原来时间没有告诉我：春到了。</p>
-<p>　　前些天还是冷风呼过一片白，天空会飞着瓣瓣雪花，屋顶瓦间粼粼，涌动着白色浪花，算上那檐上麻雀，傻兮兮地立着，黑得可爱，便是白色的冬了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2016/04/23/3_%E6%98%A5/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2015/12/19/4_%E6%AD%A5%E4%B8%8A%E5%A4%AA%E7%A9%BA%E6%80%9D%E7%8E%89%E4%BA%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Stephen Serrylei">
-      <meta itemprop="description" content="Just record something randomly">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Silence">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2015/12/19/4_%E6%AD%A5%E4%B8%8A%E5%A4%AA%E7%A9%BA%E6%80%9D%E7%8E%89%E4%BA%BA/" class="post-title-link" itemprop="url">步上太空思玉人</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2015-12-19 19:55:58" itemprop="dateCreated datePublished" datetime="2015-12-19T19:55:58+08:00">2015-12-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-19 18:48:15" itemprop="dateModified" datetime="2022-04-19T18:48:15+08:00">2022-04-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/school/" itemprop="url" rel="index"><span itemprop="name">school</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/school/teen/" itemprop="url" rel="index"><span itemprop="name">teen</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>​ 皓月吹素烟，雾遮半边天。</p>
-<p>　　枯树随风倒，犹言无处眠。</p>
-<p>　　厚书压两肩，重似岳山岩。</p>
-<p>　　步轻如风掣，心晴少烦念。</p>
-<p>　　书读百不厌，畅谈邀圣贤。</p>
-<p>　　玉盘引清光，浮现一影倩。</p>
-<pre><code>——12.18夜八时。自由，畅快。读书，快乐。可爱的阳清，此时竟想起你。</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
 
@@ -1016,13 +601,13 @@ x\le8,500,000\)</span>.</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
   </nav>
@@ -1049,7 +634,7 @@ x\le8,500,000\)</span>.</p>
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
